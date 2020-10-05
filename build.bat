@@ -25,10 +25,10 @@ if not exist ".\bin" mkdir bin
 copy packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll bin\Newtonsoft.Json.dll
 copy packages\RestSharp.105.1.0\lib\net45\RestSharp.dll bin\RestSharp.dll
 copy packages\ILMerge.2.14.1208\tools\ILMerge.exe bin\ILMerge.exe
-%CSCPATH%\csc -nowarn:0109,1591,1573 /reference:bin\Newtonsoft.Json.dll;bin\RestSharp.dll /target:library /out:bin\PreciselyAPIsCSharpSDK-9.0.0.dll /recurse:src\com.precisely.apis\*.cs /doc:bin\com.precisely.apis.xml
+%CSCPATH%\csc -nowarn:0109,1591,1573 /reference:bin\Newtonsoft.Json.dll;bin\RestSharp.dll /target:library /out:bin\PreciselyAPIsCSharpSDK-9.5.0.dll /recurse:src\com.precisely.apis\*.cs /doc:bin\com.precisely.apis.xml
 cd bin
 mkdir comb
-ilmerge /out:comb/PreciselyAPIsCSharpSDK-9.0.0.dll Newtonsoft.Json.dll RestSharp.dll PreciselyAPIsCSharpSDK-9.0.0.dll
+ilmerge /out:comb/PreciselyAPIsCSharpSDK-9.5.0.dll Newtonsoft.Json.dll RestSharp.dll PreciselyAPIsCSharpSDK-9.5.0.dll
 exit 0
 
 

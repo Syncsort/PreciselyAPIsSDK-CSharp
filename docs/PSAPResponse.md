@@ -3,6 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**PsapId** | **string** |  | [optional] 
 **FccId** | **string** |  | [optional] 
 **Type** | **string** |  | [optional] 
 **Count** | **int?** |  | [optional] 

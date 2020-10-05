@@ -4,7 +4,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | [optional] 
-**Domain** | **string** |  | [optional] 
 **Current** | **bool?** |  | [optional] [default to false]
 **Title** | **string** |  | [optional] 
 **Start** | [**Start**](Start.md) |  | [optional] 

@@ -3,7 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Birthday** | [**Birthday**](Birthday.md) |  | [optional] 
 **Range** | **string** |  | [optional] 
 **Value** | **int?** |  | [optional] 
 

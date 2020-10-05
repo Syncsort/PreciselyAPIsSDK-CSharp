@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 <a name="getidentitybyaddress"></a>
 # **GetIdentityByAddress**
-> GeoIdentityResponse GetIdentityByAddress (string address, string givenName = null, string familyName = null, string confidence = null, string maxCandidates = null, string theme = null, string filter = null)
+> IdentityResponse GetIdentityByAddress (string address, string confidence = null, string maxCandidates = null, string theme = null, string filter = null)
 
 Identities By Address
 
@@ -38,8 +38,6 @@ namespace Example
 
             var apiInstance = new IdentityProfilesServiceApi();
             var address = address_example;  // string | free form address text
-            var givenName = givenName_example;  // string | This filters all the associated identities of address by given Name (optional) 
-            var familyName = familyName_example;  // string | This filters all the associated identities of address by family Name (optional) 
             var confidence = confidence_example;  // string | To adjust quality threshold of data returned. Default is HIGH (optional) 
             var maxCandidates = maxCandidates_example;  // string | Number of identities returned in response (optional) 
             var theme = theme_example;  // string | theme parameter for filtering results (optional) 
@@ -48,7 +46,7 @@ namespace Example
             try
             {
                 // Identities By Address
-                GeoIdentityResponse result = apiInstance.GetIdentityByAddress(address, givenName, familyName, confidence, maxCandidates, theme, filter);
+                IdentityResponse result = apiInstance.GetIdentityByAddress(address, confidence, maxCandidates, theme, filter);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -65,8 +63,6 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **address** | **string**| free form address text | 
- **givenName** | **string**| This filters all the associated identities of address by given Name | [optional] 
- **familyName** | **string**| This filters all the associated identities of address by family Name | [optional] 
  **confidence** | **string**| To adjust quality threshold of data returned. Default is HIGH | [optional] 
  **maxCandidates** | **string**| Number of identities returned in response | [optional] 
  **theme** | **string**| theme parameter for filtering results | [optional] 
@@ -74,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GeoIdentityResponse**](GeoIdentityResponse.md)
+[**IdentityResponse**](IdentityResponse.md)
 
 ### Authorization
 
@@ -83,7 +79,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/xml
- - **Accept**: application/xml, application/json
+ - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -155,7 +151,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/xml
- - **Accept**: application/xml, application/json
+ - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

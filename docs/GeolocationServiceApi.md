@@ -4,78 +4,9 @@ All URIs are relative to *https://api.precisely.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetDeviceStatus**](GeolocationServiceApi.md#getdevicestatus) | **GET** /geolocation/v1/devicestatus | Location By Device Status.
 [**GetLocationByIPAddress**](GeolocationServiceApi.md#getlocationbyipaddress) | **GET** /geolocation/v1/location/byipaddress | Location By IP Address.
 [**GetLocationByWiFiAccessPoint**](GeolocationServiceApi.md#getlocationbywifiaccesspoint) | **GET** /geolocation/v1/location/byaccesspoint | Location by WiFi Access Point.
 
-
-<a name="getdevicestatus"></a>
-# **GetDeviceStatus**
-> GeoLocationDeviceSatus GetDeviceStatus (string deviceId, string includeNetworkInfo_ = null)
-
-Location By Device Status.
-
-This service accepts a phone number as input and returns details distinguishing landline and wireless numbers and also checks if a wireless number can be located.
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using com.precisely.apis.Api;
-using com.precisely.apis.Client;
-using com.precisely.apis.Model;
-
-namespace Example
-{
-    public class GetDeviceStatusExample
-    {
-        public void main()
-        {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
-
-            var apiInstance = new GeolocationServiceApi();
-            var deviceId = deviceId_example;  // string | Unique identifier for the intended device. Supported identifiers are fixed line and mobile number.
-            var includeNetworkInfo_ = includeNetworkInfo__example;  // string | Y or N (default is Y) – if it is N, then network/carrier details will not be added in the response. (optional) 
-
-            try
-            {
-                // Location By Device Status.
-                GeoLocationDeviceSatus result = apiInstance.GetDeviceStatus(deviceId, includeNetworkInfo_);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling GeolocationServiceApi.GetDeviceStatus: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **deviceId** | **string**| Unique identifier for the intended device. Supported identifiers are fixed line and mobile number. | 
- **includeNetworkInfo_** | **string**| Y or N (default is Y) – if it is N, then network/carrier details will not be added in the response. | [optional] 
-
-### Return type
-
-[**GeoLocationDeviceSatus**](GeoLocationDeviceSatus.md)
-
-### Authorization
-
-[oAuth2Password](../README.md#oAuth2Password)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/xml, application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="getlocationbyipaddress"></a>
 # **GetLocationByIPAddress**
