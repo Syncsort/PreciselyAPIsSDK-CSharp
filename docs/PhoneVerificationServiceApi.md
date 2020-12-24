@@ -4,7 +4,7 @@ All URIs are relative to *https://api.precisely.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PhoneVerification**](PhoneVerificationServiceApi.md#phoneverification) | **GET** /phoneverification/v1/phoneVerification | Phone verification.
+[**PhoneVerification**](PhoneVerificationServiceApi.md#phoneverification) | **GET** /phoneverification/v1/phoneverification | Phone verification.
 
 
 <a name="phoneverification"></a>
