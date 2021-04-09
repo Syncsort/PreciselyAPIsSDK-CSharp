@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 <a name="getpoisbyaddress"></a>
 # **GetPOIsByAddress**
-> GeoEnrichResponse GetPOIsByAddress (string address, string country = null, string name = null, string type = null, string categoryCode = null, string sicCode = null, string maxCandidates = null, string searchRadius = null, string searchRadiusUnit = null, string travelTime = null, string travelTimeUnit = null, string travelDistance = null, string travelDistanceUnit = null, string travelMode = null, string sortBy = null, string fuzzyOnName = null, string page = null)
+> GeoEnrichResponse GetPOIsByAddress (string address, string country = null, string name = null, string type = null, string categoryCode = null, string sicCode = null, string maxCandidates = null, string searchRadius = null, string searchRadiusUnit = null, string travelTime = null, string travelTimeUnit = null, string travelDistance = null, string travelDistanceUnit = null, string travelMode = null, string sortBy = null, string fuzzyOnName = null, string page = null, string matchMode = null, string specificMatchOn = null)
 
 Points of Interest By Address.
 
@@ -194,11 +194,13 @@ namespace Example
             var sortBy = sortBy_example;  // string | Specifies the order in which POIs are retrieved. (optional)  (default to distance)
             var fuzzyOnName = fuzzyOnName_example;  // string | Allowed values are Y/N. If N, the search on name will not allow fuzziness. (optional) 
             var page = page_example;  // string | Will support pagination, by default 1st page with maxCandidates results are returned. (optional) 
+            var matchMode = matchMode_example;  // string |  (optional) 
+            var specificMatchOn = specificMatchOn_example;  // string |  (optional) 
 
             try
             {
                 // Points of Interest By Address.
-                GeoEnrichResponse result = apiInstance.GetPOIsByAddress(address, country, name, type, categoryCode, sicCode, maxCandidates, searchRadius, searchRadiusUnit, travelTime, travelTimeUnit, travelDistance, travelDistanceUnit, travelMode, sortBy, fuzzyOnName, page);
+                GeoEnrichResponse result = apiInstance.GetPOIsByAddress(address, country, name, type, categoryCode, sicCode, maxCandidates, searchRadius, searchRadiusUnit, travelTime, travelTimeUnit, travelDistance, travelDistanceUnit, travelMode, sortBy, fuzzyOnName, page, matchMode, specificMatchOn);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -231,6 +233,8 @@ Name | Type | Description  | Notes
  **sortBy** | **string**| Specifies the order in which POIs are retrieved. | [optional] [default to distance]
  **fuzzyOnName** | **string**| Allowed values are Y/N. If N, the search on name will not allow fuzziness. | [optional] 
  **page** | **string**| Will support pagination, by default 1st page with maxCandidates results are returned. | [optional] 
+ **matchMode** | **string**|  | [optional] 
+ **specificMatchOn** | **string**|  | [optional] 
 
 ### Return type
 
@@ -249,7 +253,7 @@ Name | Type | Description  | Notes
 
 <a name="getpoisbyarea"></a>
 # **GetPOIsByArea**
-> GeoEnrichResponse GetPOIsByArea (string country, string areaName3 = null, string postcode1 = null, string postcode2 = null, string name = null, string type = null, string categoryCode = null, string sicCode = null, string maxCandidates = null, string fuzzyOnName = null, string page = null)
+> GeoEnrichResponse GetPOIsByArea (string country, string areaName3 = null, string postcode1 = null, string postcode2 = null, string name = null, string type = null, string categoryCode = null, string sicCode = null, string maxCandidates = null, string fuzzyOnName = null, string page = null, string matchMode = null, string specificMatchOn = null)
 
 Points of Interest By Area.
 
@@ -286,11 +290,13 @@ namespace Example
             var maxCandidates = maxCandidates_example;  // string | Maximum number of POIs that can be retrieved. (optional) 
             var fuzzyOnName = fuzzyOnName_example;  // string | Allowed values are Y/N. If N, the search on name will not allow fuzziness. (optional) 
             var page = page_example;  // string | Will support pagination, by default 1st page with maxCandidates results are returned. (optional) 
+            var matchMode = matchMode_example;  // string |  (optional) 
+            var specificMatchOn = specificMatchOn_example;  // string |  (optional) 
 
             try
             {
                 // Points of Interest By Area.
-                GeoEnrichResponse result = apiInstance.GetPOIsByArea(country, areaName3, postcode1, postcode2, name, type, categoryCode, sicCode, maxCandidates, fuzzyOnName, page);
+                GeoEnrichResponse result = apiInstance.GetPOIsByArea(country, areaName3, postcode1, postcode2, name, type, categoryCode, sicCode, maxCandidates, fuzzyOnName, page, matchMode, specificMatchOn);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -317,6 +323,8 @@ Name | Type | Description  | Notes
  **maxCandidates** | **string**| Maximum number of POIs that can be retrieved. | [optional] 
  **fuzzyOnName** | **string**| Allowed values are Y/N. If N, the search on name will not allow fuzziness. | [optional] 
  **page** | **string**| Will support pagination, by default 1st page with maxCandidates results are returned. | [optional] 
+ **matchMode** | **string**|  | [optional] 
+ **specificMatchOn** | **string**|  | [optional] 
 
 ### Return type
 
@@ -405,7 +413,7 @@ Name | Type | Description  | Notes
 
 <a name="getpoisbylocation"></a>
 # **GetPOIsByLocation**
-> GeoEnrichResponse GetPOIsByLocation (string longitude, string latitude, string searchText = null, string type = null, string categoryCode = null, string sicCode = null, string maxCandidates = null, string searchRadius = null, string searchRadiusUnit = null, string travelTime = null, string travelTimeUnit = null, string travelDistance = null, string travelDistanceUnit = null, string travelMode = null, string sortBy = null, string fuzzyOnName = null, string page = null, string searchOnNameOnly = null)
+> GeoEnrichResponse GetPOIsByLocation (string longitude, string latitude, string searchText = null, string type = null, string categoryCode = null, string sicCode = null, string maxCandidates = null, string searchRadius = null, string searchRadiusUnit = null, string travelTime = null, string travelTimeUnit = null, string travelDistance = null, string travelDistanceUnit = null, string travelMode = null, string sortBy = null, string fuzzyOnName = null, string page = null, string searchOnNameOnly = null, string matchMode = null, string specificMatchOn = null)
 
 Points of Interest By Location.
 
@@ -449,11 +457,13 @@ namespace Example
             var fuzzyOnName = fuzzyOnName_example;  // string | Allowed values are Y/N. If N, the search on name will not allow fuzziness. (optional) 
             var page = page_example;  // string | Will support pagination, by default 1st page with maxCandidates results are returned. (optional) 
             var searchOnNameOnly = searchOnNameOnly_example;  // string | search name description (optional) 
+            var matchMode = matchMode_example;  // string |  (optional) 
+            var specificMatchOn = specificMatchOn_example;  // string |  (optional) 
 
             try
             {
                 // Points of Interest By Location.
-                GeoEnrichResponse result = apiInstance.GetPOIsByLocation(longitude, latitude, searchText, type, categoryCode, sicCode, maxCandidates, searchRadius, searchRadiusUnit, travelTime, travelTimeUnit, travelDistance, travelDistanceUnit, travelMode, sortBy, fuzzyOnName, page, searchOnNameOnly);
+                GeoEnrichResponse result = apiInstance.GetPOIsByLocation(longitude, latitude, searchText, type, categoryCode, sicCode, maxCandidates, searchRadius, searchRadiusUnit, travelTime, travelTimeUnit, travelDistance, travelDistanceUnit, travelMode, sortBy, fuzzyOnName, page, searchOnNameOnly, matchMode, specificMatchOn);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -487,6 +497,8 @@ Name | Type | Description  | Notes
  **fuzzyOnName** | **string**| Allowed values are Y/N. If N, the search on name will not allow fuzziness. | [optional] 
  **page** | **string**| Will support pagination, by default 1st page with maxCandidates results are returned. | [optional] 
  **searchOnNameOnly** | **string**| search name description | [optional] 
+ **matchMode** | **string**|  | [optional] 
+ **specificMatchOn** | **string**|  | [optional] 
 
 ### Return type
 
@@ -641,7 +653,7 @@ Name | Type | Description  | Notes
 
 <a name="poisautocomplete"></a>
 # **PoisAutocomplete**
-> GeoEnrichResponse PoisAutocomplete (string longitude = null, string latitude = null, string searchText = null, string searchRadius = null, string searchRadiusUnit = null, string travelTime = null, string travelTimeUnit = null, string travelDistance = null, string travelDistanceUnit = null, string travelMode = null, string country = null, string areaName1 = null, string areaName3 = null, string postcode1 = null, string postcode2 = null, string ipAddress = null, string autoDetectLocation = null, string type = null, string categoryCode = null, string sicCode = null, string maxCandidates = null, string sortBy = null, string searchOnNameOnly = null)
+> GeoEnrichResponse PoisAutocomplete (string longitude = null, string latitude = null, string searchText = null, string searchRadius = null, string searchRadiusUnit = null, string travelTime = null, string travelTimeUnit = null, string travelDistance = null, string travelDistanceUnit = null, string travelMode = null, string country = null, string areaName1 = null, string areaName3 = null, string postcode1 = null, string postcode2 = null, string ipAddress = null, string autoDetectLocation = null, string type = null, string categoryCode = null, string sicCode = null, string maxCandidates = null, string sortBy = null, string searchOnNameOnly = null, string matchMode = null, string specificMatchOn = null)
 
 Points of Interest Autocomplete.
 
@@ -690,11 +702,13 @@ namespace Example
             var maxCandidates = maxCandidates_example;  // string | Maximum number of POIs that can be retrieved. (optional) 
             var sortBy = sortBy_example;  // string | Specifies the order in which POIs are retrieved. (optional)  (default to distance)
             var searchOnNameOnly = searchOnNameOnly_example;  // string | specifies search on name (optional) 
+            var matchMode = matchMode_example;  // string |  (optional) 
+            var specificMatchOn = specificMatchOn_example;  // string |  (optional) 
 
             try
             {
                 // Points of Interest Autocomplete.
-                GeoEnrichResponse result = apiInstance.PoisAutocomplete(longitude, latitude, searchText, searchRadius, searchRadiusUnit, travelTime, travelTimeUnit, travelDistance, travelDistanceUnit, travelMode, country, areaName1, areaName3, postcode1, postcode2, ipAddress, autoDetectLocation, type, categoryCode, sicCode, maxCandidates, sortBy, searchOnNameOnly);
+                GeoEnrichResponse result = apiInstance.PoisAutocomplete(longitude, latitude, searchText, searchRadius, searchRadiusUnit, travelTime, travelTimeUnit, travelDistance, travelDistanceUnit, travelMode, country, areaName1, areaName3, postcode1, postcode2, ipAddress, autoDetectLocation, type, categoryCode, sicCode, maxCandidates, sortBy, searchOnNameOnly, matchMode, specificMatchOn);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -733,6 +747,8 @@ Name | Type | Description  | Notes
  **maxCandidates** | **string**| Maximum number of POIs that can be retrieved. | [optional] 
  **sortBy** | **string**| Specifies the order in which POIs are retrieved. | [optional] [default to distance]
  **searchOnNameOnly** | **string**| specifies search on name | [optional] 
+ **matchMode** | **string**|  | [optional] 
+ **specificMatchOn** | **string**|  | [optional] 
 
 ### Return type
 

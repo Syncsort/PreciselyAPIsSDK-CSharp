@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="getroutebyaddress"></a>
 # **GetRouteByAddress**
-> GeoRouteResponse GetRouteByAddress (string startAddress, string endAddress, string db = null, string country = null, string intermediateAddresses = null, string oip = null, string destinationSrs = null, string optimizeBy = null, string returnDistance = null, string distanceUnit = null, string returnTime = null, string timeUnit = null, string language = null, string directionsStyle = null, string segmentGeometryStyle = null, string primaryNameOnly = null, string majorRoads = null, string historicTrafficTimeBucket = null, string returnDirectionGeometry = null, string useCvr = null, string looseningBarrierRestrictions = null, string vehicleType = null, string weight = null, string weightUnit = null, string height = null, string heightUnit = null, string length = null, string lengthUnit = null, string width = null, string widthUnit = null)
+> GeoRouteResponse GetRouteByAddress (string startAddress, string endAddress, string db = null, string country = null, string intermediateAddresses = null, string oip = null, string destinationSrs = null, string optimizeBy = null, string returnDistance = null, string distanceUnit = null, string returnTime = null, string timeUnit = null, string language = null, string directionsStyle = null, string segmentGeometryStyle = null, string primaryNameOnly = null, string majorRoads = null, string historicTrafficTimeBucket = null, string returnDirectionGeometry = null, string useCvr = null, string looseningBarrierRestrictions = null, string vehicleType = null, string weight = null, string weightUnit = null, string height = null, string heightUnit = null, string length = null, string lengthUnit = null, string width = null, string widthUnit = null, string returnIntermediatePoints = null)
 
 Gets Route by Address
 
@@ -68,11 +68,12 @@ namespace Example
             var lengthUnit = lengthUnit_example;  // string | The unit of length eg. m(meter), km(kilometer), yd(yard), ft(foot), mi(mile) (optional)  (default to ft)
             var width = width_example;  // string | Specifies the maximum width of a vehicle. Any vehicles over this value will be restricted when determining the route. (optional) 
             var widthUnit = widthUnit_example;  // string | The unit of width eg. m(meter), km(kilometer), yd(yard), ft(foot), mi(mile) (optional)  (default to ft)
+            var returnIntermediatePoints = returnIntermediatePoints_example;  // string | Specifies whether Intermediate points needs to be part of response. (optional)  (default to false)
 
             try
             {
                 // Gets Route by Address
-                GeoRouteResponse result = apiInstance.GetRouteByAddress(startAddress, endAddress, db, country, intermediateAddresses, oip, destinationSrs, optimizeBy, returnDistance, distanceUnit, returnTime, timeUnit, language, directionsStyle, segmentGeometryStyle, primaryNameOnly, majorRoads, historicTrafficTimeBucket, returnDirectionGeometry, useCvr, looseningBarrierRestrictions, vehicleType, weight, weightUnit, height, heightUnit, length, lengthUnit, width, widthUnit);
+                GeoRouteResponse result = apiInstance.GetRouteByAddress(startAddress, endAddress, db, country, intermediateAddresses, oip, destinationSrs, optimizeBy, returnDistance, distanceUnit, returnTime, timeUnit, language, directionsStyle, segmentGeometryStyle, primaryNameOnly, majorRoads, historicTrafficTimeBucket, returnDirectionGeometry, useCvr, looseningBarrierRestrictions, vehicleType, weight, weightUnit, height, heightUnit, length, lengthUnit, width, widthUnit, returnIntermediatePoints);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -118,6 +119,7 @@ Name | Type | Description  | Notes
  **lengthUnit** | **string**| The unit of length eg. m(meter), km(kilometer), yd(yard), ft(foot), mi(mile) | [optional] [default to ft]
  **width** | **string**| Specifies the maximum width of a vehicle. Any vehicles over this value will be restricted when determining the route. | [optional] 
  **widthUnit** | **string**| The unit of width eg. m(meter), km(kilometer), yd(yard), ft(foot), mi(mile) | [optional] [default to ft]
+ **returnIntermediatePoints** | **string**| Specifies whether Intermediate points needs to be part of response. | [optional] [default to false]
 
 ### Return type
 
@@ -136,7 +138,7 @@ Name | Type | Description  | Notes
 
 <a name="getroutebylocation"></a>
 # **GetRouteByLocation**
-> GeoRouteResponse GetRouteByLocation (string startPoint, string endPoint, string db = null, string intermediatePoints = null, string oip = null, string destinationSrs = null, string optimizeBy = null, string returnDistance = null, string distanceUnit = null, string returnTime = null, string timeUnit = null, string language = null, string directionsStyle = null, string segmentGeometryStyle = null, string primaryNameOnly = null, string majorRoads = null, string historicTrafficTimeBucket = null, string returnDirectionGeometry = null, string useCvr = null, string looseningBarrierRestrictions = null, string vehicleType = null, string weight = null, string weightUnit = null, string height = null, string heightUnit = null, string length = null, string lengthUnit = null, string width = null, string widthUnit = null)
+> GeoRouteResponse GetRouteByLocation (string startPoint, string endPoint, string db = null, string intermediatePoints = null, string oip = null, string destinationSrs = null, string optimizeBy = null, string returnDistance = null, string distanceUnit = null, string returnTime = null, string timeUnit = null, string language = null, string directionsStyle = null, string segmentGeometryStyle = null, string primaryNameOnly = null, string majorRoads = null, string historicTrafficTimeBucket = null, string returnDirectionGeometry = null, string useCvr = null, string looseningBarrierRestrictions = null, string vehicleType = null, string weight = null, string weightUnit = null, string height = null, string heightUnit = null, string length = null, string lengthUnit = null, string width = null, string widthUnit = null, string returnIntermediatePoints = null)
 
 Gets Route by Location
 
@@ -191,11 +193,12 @@ namespace Example
             var lengthUnit = lengthUnit_example;  // string | The unit of length eg. m(meter), km(kilometer), yd(yard), ft(foot), mi(mile) (optional)  (default to ft)
             var width = width_example;  // string | Specifies the maximum width of a vehicle. Any vehicles over this value will be restricted when determining the route. (optional) 
             var widthUnit = widthUnit_example;  // string | The unit of width eg. m(meter), km(kilometer), yd(yard), ft(foot), mi(mile) (optional)  (default to ft)
+            var returnIntermediatePoints = returnIntermediatePoints_example;  // string | Specifies whether Intermediate points needs to be part of response. (optional)  (default to false)
 
             try
             {
                 // Gets Route by Location
-                GeoRouteResponse result = apiInstance.GetRouteByLocation(startPoint, endPoint, db, intermediatePoints, oip, destinationSrs, optimizeBy, returnDistance, distanceUnit, returnTime, timeUnit, language, directionsStyle, segmentGeometryStyle, primaryNameOnly, majorRoads, historicTrafficTimeBucket, returnDirectionGeometry, useCvr, looseningBarrierRestrictions, vehicleType, weight, weightUnit, height, heightUnit, length, lengthUnit, width, widthUnit);
+                GeoRouteResponse result = apiInstance.GetRouteByLocation(startPoint, endPoint, db, intermediatePoints, oip, destinationSrs, optimizeBy, returnDistance, distanceUnit, returnTime, timeUnit, language, directionsStyle, segmentGeometryStyle, primaryNameOnly, majorRoads, historicTrafficTimeBucket, returnDirectionGeometry, useCvr, looseningBarrierRestrictions, vehicleType, weight, weightUnit, height, heightUnit, length, lengthUnit, width, widthUnit, returnIntermediatePoints);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -240,6 +243,7 @@ Name | Type | Description  | Notes
  **lengthUnit** | **string**| The unit of length eg. m(meter), km(kilometer), yd(yard), ft(foot), mi(mile) | [optional] [default to ft]
  **width** | **string**| Specifies the maximum width of a vehicle. Any vehicles over this value will be restricted when determining the route. | [optional] 
  **widthUnit** | **string**| The unit of width eg. m(meter), km(kilometer), yd(yard), ft(foot), mi(mile) | [optional] [default to ft]
+ **returnIntermediatePoints** | **string**| Specifies whether Intermediate points needs to be part of response. | [optional] [default to false]
 
 ### Return type
 

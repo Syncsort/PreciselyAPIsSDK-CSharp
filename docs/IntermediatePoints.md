@@ -1,12 +1,10 @@
-# com.precisely.apis.Model.Lifestyle
+# com.precisely.apis.Model.IntermediatePoints
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InternationalType** | **string** |  | [optional] 
-**GroupType** | **string** |  | [optional] 
-**CategoryType** | **string** |  | [optional] 
-**Boundary** | [**Boundary**](Boundary.md) |  | [optional] 
+**Type** | **string** |  | [optional] 
+**Coordinates** | **List&lt;List&lt;double?&gt;&gt;** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

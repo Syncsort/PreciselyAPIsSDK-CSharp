@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **MaxCandidates** | **string** |  | [optional] 
 **FuzzyOnName** | **string** |  | [optional] 
 **Page** | **string** |  | [optional] 
+**MatchMode** | **string** |  | [optional] 
+**SpecificMatchOn** | **string** |  | [optional] 
 **Geometry** | [**CommonGeometry**](CommonGeometry.md) |  | [optional] 
 **GeometryAsText** | **string** |  | [optional] 
 

@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Time** | **decimal?** |  | [optional] 
 **Geometry** | [**RouteGeometry**](RouteGeometry.md) |  | [optional] 
 **RouteDirections** | [**RouteDirections**](RouteDirections.md) |  | [optional] 
+**IntermediatePoints** | [**IntermediatePoints**](IntermediatePoints.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
