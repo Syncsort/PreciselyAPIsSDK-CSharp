@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="search"></a>
 # **Search**
-> GeosearchLocations Search (string searchText, string latitude = null, string longitude = null, string searchRadius = null, string searchRadiusUnit = null, string maxCandidates = null, string country = null, string matchOnAddressNumber = null, string autoDetectLocation = null, string ipAddress = null, string areaName1 = null, string areaName3 = null, string postCode = null, string returnAdminAreasOnly = null, string includeRangesDetails = null, string searchType = null)
+> GeosearchLocations Search (string searchText, string latitude = null, string longitude = null, string searchRadius = null, string searchRadiusUnit = null, string maxCandidates = null, string country = null, string matchOnAddressNumber = null, string autoDetectLocation = null, string ipAddress = null, string areaName1 = null, string areaName3 = null, string postCode = null, string returnAdminAreasOnly = null, string includeRangesDetails = null, string searchType = null, string searchOnAddressNumber = null)
 
 Typeahead Search
 
@@ -51,11 +51,12 @@ namespace Example
             var returnAdminAreasOnly = returnAdminAreasOnly_example;  // string | if value set 'Y' then it will only do a matching on postcode or areaName1, areaName2, areaName3 and areaName4 fields in the data (optional)  (default to N)
             var includeRangesDetails = includeRangesDetails_example;  // string | if value set 'Y' then display all unit info of ranges, if value set 'N' then don't show ranges (optional)  (default to Y)
             var searchType = searchType_example;  // string | Preference to control search type of interactive requests. (optional)  (default to ADDRESS)
+            var searchOnAddressNumber = searchOnAddressNumber_example;  // string | if value set 'Y' then display searchOnAddressNumber (optional)  (default to N)
 
             try
             {
                 // Typeahead Search
-                GeosearchLocations result = apiInstance.Search(searchText, latitude, longitude, searchRadius, searchRadiusUnit, maxCandidates, country, matchOnAddressNumber, autoDetectLocation, ipAddress, areaName1, areaName3, postCode, returnAdminAreasOnly, includeRangesDetails, searchType);
+                GeosearchLocations result = apiInstance.Search(searchText, latitude, longitude, searchRadius, searchRadiusUnit, maxCandidates, country, matchOnAddressNumber, autoDetectLocation, ipAddress, areaName1, areaName3, postCode, returnAdminAreasOnly, includeRangesDetails, searchType, searchOnAddressNumber);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -87,6 +88,7 @@ Name | Type | Description  | Notes
  **returnAdminAreasOnly** | **string**| if value set &#39;Y&#39; then it will only do a matching on postcode or areaName1, areaName2, areaName3 and areaName4 fields in the data | [optional] [default to N]
  **includeRangesDetails** | **string**| if value set &#39;Y&#39; then display all unit info of ranges, if value set &#39;N&#39; then don&#39;t show ranges | [optional] [default to Y]
  **searchType** | **string**| Preference to control search type of interactive requests. | [optional] [default to ADDRESS]
+ **searchOnAddressNumber** | **string**| if value set &#39;Y&#39; then display searchOnAddressNumber | [optional] [default to N]
 
 ### Return type
 
@@ -99,7 +101,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json, application/xml
- - **Accept**: application/xml, application/json
+ - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
