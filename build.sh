@@ -44,5 +44,5 @@ then
   echo "[ERROR] Compilation failed with exit code $?"
   exit 1
 else
-  echo "[INFO] bin/PreciselyAPIsCSharpSDK-11.0.0.dll was created successfully"
+  echo "[INFO] bin/PreciselyAPIsCSharpSDK-11.0.1.dll was created successfully"
 fi
