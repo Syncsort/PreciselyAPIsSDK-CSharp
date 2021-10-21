@@ -32,6 +32,13 @@ Name | Type | Description | Notes
 **SalesDate** | **string** |  | [optional] 
 **PriorSaleDate** | **string** |  | [optional] 
 **PriorSalesPrice** | **string** |  | [optional] 
+**LivingSqft** | **string** |  | [optional] 
+**RoofFrameType** | [**RoofFrameType**](RoofFrameType.md) |  | [optional] 
+**Foundation** | [**Foundation**](Foundation.md) |  | [optional] 
+**BuildgCondition** | [**BuildgCondition**](BuildgCondition.md) |  | [optional] 
+**BuildgCount** | **string** |  | [optional] 
+**BuildgUnitNo** | **string** |  | [optional] 
+**BuildgFeaturesSqft** | [**List&lt;BuildgFeaturesSqft&gt;**](BuildgFeaturesSqft.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
