@@ -142,7 +142,7 @@ No authorization required
 
 <a name="getpropertyattributesbyaddress"></a>
 # **GetPropertyAttributesByAddress**
-> PropertyInfoResponse GetPropertyAttributesByAddress (string address = null, string attributeFilter = null)
+> PropertyInfoResponse GetPropertyAttributesByAddress (string address = null, string attributes = null)
 
 PropertyV2 Attributes By Address.
 
@@ -169,12 +169,12 @@ namespace Example
 
             var apiInstance = new PropertyInformationServiceApi();
             var address = address_example;  // string | free form address text (optional) 
-            var attributeFilter = attributeFilter_example;  // string | Case-insensitive comma separated values of property attributes. Response will contain only the input attributes. (optional) 
+            var attributes = attributes_example;  // string | Case-insensitive comma separated values of property attributes. Response will contain only the input attributes. (optional) 
 
             try
             {
                 // PropertyV2 Attributes By Address.
-                PropertyInfoResponse result = apiInstance.GetPropertyAttributesByAddress(address, attributeFilter);
+                PropertyInfoResponse result = apiInstance.GetPropertyAttributesByAddress(address, attributes);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -191,7 +191,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **address** | **string**| free form address text | [optional] 
- **attributeFilter** | **string**| Case-insensitive comma separated values of property attributes. Response will contain only the input attributes. | [optional] 
+ **attributes** | **string**| Case-insensitive comma separated values of property attributes. Response will contain only the input attributes. | [optional] 
 
 ### Return type
 
