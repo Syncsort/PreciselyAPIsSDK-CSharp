@@ -1,4 +1,6 @@
+
 # com.precisely.apis.Model.RateCenterResponse
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -9,11 +11,13 @@ Name | Type | Description | Notes
 **AreaName1** | **string** |  | [optional] 
 **Geometry** | [**Geometry**](Geometry.md) |  | [optional] 
 **AreaCodeInfoList** | [**List&lt;AreaCodeInfo&gt;**](AreaCodeInfo.md) |  | [optional] 
-**MatchedAddress** | [**MatchedAddress**](MatchedAddress.md) |  | [optional] 
+**MatchedAddress** | [**Address**](Address.md) |  | [optional] 
 **Match** | [**Match**](Match.md) |  | [optional] 
 **County** | [**County**](County.md) |  | [optional] 
-**Count** | **int?** |  | [optional] 
+**Count** | **int** |  | [optional] 
 **ProductCode** | **string** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

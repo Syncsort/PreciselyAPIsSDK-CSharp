@@ -1,4 +1,6 @@
+
 # com.precisely.apis.Model.GetCityStateProvinceAPIOptions
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -8,5 +10,7 @@ Name | Type | Description | Notes
 **MaximumResults** | **string** | MaximumResults. | [optional] [default to "10"]
 **PerformUSProcessing** | **string** | PerformUSProcessing. | [optional] [default to "Y"]
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

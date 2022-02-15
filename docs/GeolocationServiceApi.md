@@ -8,8 +8,9 @@ Method | HTTP request | Description
 [**GetLocationByWiFiAccessPoint**](GeolocationServiceApi.md#getlocationbywifiaccesspoint) | **GET** /geolocation/v1/location/byaccesspoint | Location by WiFi Access Point.
 
 
-<a name="getlocationbyipaddress"></a>
-# **GetLocationByIPAddress**
+
+## GetLocationByIPAddress
+
 > GeoLocationIpAddr GetLocationByIPAddress (string ipAddress)
 
 Location By IP Address.
@@ -17,8 +18,9 @@ Location By IP Address.
 This service accepts an IP address and returns the location coordinates corresponding to that IP address.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -28,14 +30,13 @@ namespace Example
 {
     public class GetLocationByIPAddressExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new GeolocationServiceApi();
+            var apiInstance = new GeolocationServiceApi(Configuration.Default);
             var ipAddress = ipAddress_example;  // string | This is the ip address of network connected device. It must be a standard IPv4 octet and a valid external address.
 
             try
@@ -44,9 +45,11 @@ namespace Example
                 GeoLocationIpAddr result = apiInstance.GetLocationByIPAddress(ipAddress);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling GeolocationServiceApi.GetLocationByIPAddress: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -54,6 +57,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -69,13 +73,23 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/xml, application/json
+- **Content-Type**: Not defined
+- **Accept**: application/xml, application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getlocationbywifiaccesspoint"></a>
-# **GetLocationByWiFiAccessPoint**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetLocationByWiFiAccessPoint
+
 > GeoLocationAccessPoint GetLocationByWiFiAccessPoint (string mac = null, string ssid = null, string rsid = null, string speed = null, string accessPoint = null)
 
 Location by WiFi Access Point.
@@ -83,8 +97,9 @@ Location by WiFi Access Point.
 This service accepts a WiFi access point MAC address and returns the location coordinates corresponding to that access point. Only mac or accessPoint are mandatory parameters (one of them has to be provided), rest are optional.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -94,14 +109,13 @@ namespace Example
 {
     public class GetLocationByWiFiAccessPointExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new GeolocationServiceApi();
+            var apiInstance = new GeolocationServiceApi(Configuration.Default);
             var mac = mac_example;  // string | This should be the 48 bit mac address (or BSSID) of wireless access point. Accepted format is Six groups of two hexadecimal digits, separated by hyphens (-) or colons. (optional) 
             var ssid = ssid_example;  // string | The service set identifier for wi-fi access point. It should be alphanumeric with maximum 32 characters. (optional) 
             var rsid = rsid_example;  // string | This is the received signal strength indicator from particular wi-fi access point. It should be a number from -113 to 0 and the unit of this strength is dBm. (optional) 
@@ -114,9 +128,11 @@ namespace Example
                 GeoLocationAccessPoint result = apiInstance.GetLocationByWiFiAccessPoint(mac, ssid, rsid, speed, accessPoint);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling GeolocationServiceApi.GetLocationByWiFiAccessPoint: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -124,6 +140,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -143,8 +160,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/xml, application/json
+- **Content-Type**: Not defined
+- **Accept**: application/xml, application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 

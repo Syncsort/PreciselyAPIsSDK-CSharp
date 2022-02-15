@@ -1,10 +1,14 @@
+
 # com.precisely.apis.Model.POIBoundaryAddressRequest
+
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Addresses** | [**List&lt;CommonAddress&gt;**](CommonAddress.md) |  | 
-**Preferences** | [**PoiBoundaryPreferences**](PoiBoundaryPreferences.md) |  | [optional] 
+**Addresses** | [**List&lt;ZonesAddress&gt;**](ZonesAddress.md) |  | 
+**Preferences** | [**POIBoundaryPreferences**](POIBoundaryPreferences.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

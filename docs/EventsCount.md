@@ -1,4 +1,6 @@
+
 # com.precisely.apis.Model.EventsCount
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -21,5 +23,7 @@ Name | Type | Description | Notes
 **R6Ge** | **string** |  | [optional] 
 **R7Ge** | **string** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

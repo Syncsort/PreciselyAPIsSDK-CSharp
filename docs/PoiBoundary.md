@@ -1,15 +1,19 @@
+
 # com.precisely.apis.Model.PoiBoundary
+
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ObjectId** | **string** |  | [optional] 
-**Center** | [**GeoZoneGeometry**](GeoZoneGeometry.md) |  | [optional] 
+**Center** | [**Center**](Center.md) |  | [optional] 
 **Countyfips** | **string** |  | [optional] 
-**Geometry** | [**CommonGeometry**](CommonGeometry.md) |  | [optional] 
-**PoiList** | [**List&lt;Poi&gt;**](Poi.md) |  | [optional] 
-**MatchedAddress** | [**MatchedAddress**](MatchedAddress.md) |  | [optional] 
+**Geometry** | [**ZonesPoiGeometry**](ZonesPoiGeometry.md) |  | [optional] 
+**PoiList** | [**List&lt;ZonesPoi&gt;**](ZonesPoi.md) |  | [optional] 
+**MatchedAddress** | [**ZonesAddress**](ZonesAddress.md) |  | [optional] 
 **Id** | **string** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

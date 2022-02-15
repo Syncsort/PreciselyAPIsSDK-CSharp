@@ -1,4 +1,6 @@
+
 # com.precisely.apis.Model.PSAPResponse
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -6,14 +8,16 @@ Name | Type | Description | Notes
 **PsapId** | **string** |  | [optional] 
 **FccId** | **string** |  | [optional] 
 **Type** | **string** |  | [optional] 
-**Count** | **int?** |  | [optional] 
+**Count** | **int** |  | [optional] 
 **Agency** | **string** |  | [optional] 
 **Phone** | **string** |  | [optional] 
 **County** | [**County**](County.md) |  | [optional] 
 **Coverage** | [**Coverage**](Coverage.md) |  | [optional] 
 **ContactPerson** | [**ContactPerson**](ContactPerson.md) |  | [optional] 
 **SiteDetails** | [**SiteDetails**](SiteDetails.md) |  | [optional] 
-**MailingAddress** | [**MatchedAddress**](MatchedAddress.md) |  | [optional] 
+**MailingAddress** | [**AHJmailingAddress**](AHJmailingAddress.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

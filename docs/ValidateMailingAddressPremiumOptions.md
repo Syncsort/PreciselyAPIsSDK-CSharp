@@ -1,4 +1,6 @@
+
 # com.precisely.apis.Model.ValidateMailingAddressPremiumOptions
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -12,5 +14,7 @@ Name | Type | Description | Notes
 **OutputCasing** | **string** | Specify the casing of the output data. | [optional] [default to "M"]
 **MaximumResults** | **string** | A number between 1 and 10 that indicates the maximum number of addresses to return. | [optional] [default to "10"]
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

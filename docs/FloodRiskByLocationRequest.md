@@ -1,10 +1,14 @@
+
 # com.precisely.apis.Model.FloodRiskByLocationRequest
+
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Locations** | [**List&lt;GeoRiskLocations&gt;**](GeoRiskLocations.md) |  | 
+**Locations** | [**List&lt;RiskLocations&gt;**](RiskLocations.md) |  | 
 **Preferences** | [**FloodRiskPreferences**](FloodRiskPreferences.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

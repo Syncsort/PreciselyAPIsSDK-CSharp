@@ -4,28 +4,30 @@ All URIs are relative to *https://api.precisely.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetCategoryCodeMetadata**](PlacesServiceApi.md#getcategorycodemetadata) | **GET** /places/v1/metadata/category | Returns Category Codes with their sub-categories (if exist), descriptions and SIC Codes mapping
+[**GetCategoryCodeMetadata**](PlacesServiceApi.md#getcategorycodemetadata) | **GET** /places/v1/metadata/category | Category Code Metadata.
 [**GetPOIById**](PlacesServiceApi.md#getpoibyid) | **GET** /places/v1/poi/{id} | Points Of Interest Details By Id
-[**GetPOIsByAddress**](PlacesServiceApi.md#getpoisbyaddress) | **GET** /places/v1/poi/byaddress | Points of Interest By Address.
-[**GetPOIsByArea**](PlacesServiceApi.md#getpoisbyarea) | **GET** /places/v1/poi/byarea | Points of Interest By Area.
-[**GetPOIsByBoundary**](PlacesServiceApi.md#getpoisbyboundary) | **POST** /places/v1/poi/byboundary | Points Of Interest By Boundary
-[**GetPOIsByLocation**](PlacesServiceApi.md#getpoisbylocation) | **GET** /places/v1/poi/bylocation | Points of Interest By Location.
-[**GetPOIsCount**](PlacesServiceApi.md#getpoiscount) | **POST** /places/v1/poicount | Point of Interests count By Geometry.
-[**GetSICMetadata**](PlacesServiceApi.md#getsicmetadata) | **GET** /places/v1/metadata/sic | Returns SIC Codes with their Industry Titles and Category Codes mapping
-[**PoisAutocomplete**](PlacesServiceApi.md#poisautocomplete) | **GET** /places/v1/poi/autocomplete | Points of Interest Autocomplete.
+[**GetPOIsByAddress**](PlacesServiceApi.md#getpoisbyaddress) | **GET** /places/v1/poi/byaddress | Get POIs By Address.
+[**GetPOIsByArea**](PlacesServiceApi.md#getpoisbyarea) | **GET** /places/v1/poi/byarea | GET Points Of Interest By Area.
+[**GetPOIsByGeometry**](PlacesServiceApi.md#getpoisbygeometry) | **POST** /places/v1/poi/byboundary | Points Of Interest By Boundary
+[**GetPOIsByLocation**](PlacesServiceApi.md#getpoisbylocation) | **GET** /places/v1/poi/bylocation | Get POIs By Location.
+[**GetPOIsCount**](PlacesServiceApi.md#getpoiscount) | **POST** /places/v1/poicount | Points Of Interest Count
+[**GetSICMetadata**](PlacesServiceApi.md#getsicmetadata) | **GET** /places/v1/metadata/sic | Get SIC Metadata
+[**PoisAutocomplete**](PlacesServiceApi.md#poisautocomplete) | **GET** /places/v1/poi/autocomplete | Points Of Interest Autocomplete
 
 
-<a name="getcategorycodemetadata"></a>
-# **GetCategoryCodeMetadata**
-> GeoEnrichMetadataResponse GetCategoryCodeMetadata (string categoryCode = null, string level = null)
 
-Returns Category Codes with their sub-categories (if exist), descriptions and SIC Codes mapping
+## GetCategoryCodeMetadata
 
-Accepts first partial digits or full category codes to filter the response
+> MetadataResponse GetCategoryCodeMetadata (string categoryCode = null, string level = null)
+
+Category Code Metadata.
+
+This service returns a list of Category codes & associated metadata which can then be used as inputs for querying the Points of Interest By Address or Location methods listed above.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -35,26 +37,27 @@ namespace Example
 {
     public class GetCategoryCodeMetadataExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PlacesServiceApi();
-            var categoryCode = categoryCode_example;  // string | Specify starting digits or full category code to filter the response (optional) 
-            var level = level_example;  // string | Allowed values are 1,2,3. If level=1, then only 4 digits category codes will be returned, level=2 means only 6 digits category codes   will be returned, level=3 means only 11 digits category codes will be returned. Multiple comma-separated values will also be accepted. So level='1,2' means return 4 digits and 6 digits category codes. (optional) 
+            var apiInstance = new PlacesServiceApi(Configuration.Default);
+            var categoryCode = categoryCode_example;  // string | 4, 6, or 11 digits category code to filter the response. (optional) 
+            var level = level_example;  // string | 1, 2, or 3. (optional) 
 
             try
             {
-                // Returns Category Codes with their sub-categories (if exist), descriptions and SIC Codes mapping
-                GeoEnrichMetadataResponse result = apiInstance.GetCategoryCodeMetadata(categoryCode, level);
+                // Category Code Metadata.
+                MetadataResponse result = apiInstance.GetCategoryCodeMetadata(categoryCode, level);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling PlacesServiceApi.GetCategoryCodeMetadata: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -63,14 +66,15 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **categoryCode** | **string**| Specify starting digits or full category code to filter the response | [optional] 
- **level** | **string**| Allowed values are 1,2,3. If level&#x3D;1, then only 4 digits category codes will be returned, level&#x3D;2 means only 6 digits category codes   will be returned, level&#x3D;3 means only 11 digits category codes will be returned. Multiple comma-separated values will also be accepted. So level&#x3D;&#39;1,2&#39; means return 4 digits and 6 digits category codes. | [optional] 
+ **categoryCode** | **string**| 4, 6, or 11 digits category code to filter the response. | [optional] 
+ **level** | **string**| 1, 2, or 3. | [optional] 
 
 ### Return type
 
-[**GeoEnrichMetadataResponse**](GeoEnrichMetadataResponse.md)
+[**MetadataResponse**](MetadataResponse.md)
 
 ### Authorization
 
@@ -78,22 +82,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml, text/csv
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml, text/csv
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpoibyid"></a>
-# **GetPOIById**
-> POIPlaces GetPOIById (string id)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPOIById
+
+> Poi GetPOIById (string id)
 
 Points Of Interest Details By Id
 
 This service returns complete details of a chosen point of interest by an identifier. The identifier could be selected from Autocomplete API response.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -103,25 +120,26 @@ namespace Example
 {
     public class GetPOIByIdExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PlacesServiceApi();
-            var id = id_example;  // string | POI unique Identifier. Accepts only numbers.
+            var apiInstance = new PlacesServiceApi(Configuration.Default);
+            var id = id_example;  // string | POI unique Identifier.
 
             try
             {
                 // Points Of Interest Details By Id
-                POIPlaces result = apiInstance.GetPOIById(id);
+                Poi result = apiInstance.GetPOIById(id);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling PlacesServiceApi.GetPOIById: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -130,13 +148,14 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**| POI unique Identifier. Accepts only numbers. | 
+ **id** | **string**| POI unique Identifier. | 
 
 ### Return type
 
-[**POIPlaces**](POIPlaces.md)
+[**Poi**](Poi.md)
 
 ### Authorization
 
@@ -144,22 +163,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpoisbyaddress"></a>
-# **GetPOIsByAddress**
-> GeoEnrichResponse GetPOIsByAddress (string address, string country = null, string name = null, string type = null, string categoryCode = null, string sicCode = null, string maxCandidates = null, string searchRadius = null, string searchRadiusUnit = null, string travelTime = null, string travelTimeUnit = null, string travelDistance = null, string travelDistanceUnit = null, string travelMode = null, string sortBy = null, string fuzzyOnName = null, string page = null, string matchMode = null, string specificMatchOn = null)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
 
-Points of Interest By Address.
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-Accepts address as an input to retrieve nearby points of interest.
+
+## GetPOIsByAddress
+
+> PlacesResponse GetPOIsByAddress (string address = null, string country = null, string name = null, string type = null, string categoryCode = null, string sicCode = null, string maxCandidates = null, string searchRadius = null, string searchRadiusUnit = null, string travelTime = null, string travelTimeUnit = null, string travelDistance = null, string travelDistanceUnit = null, string travelMode = null, string sortBy = null, string fuzzyOnName = null, string page = null, string matchMode = null, string specificMatchOn = null)
+
+Get POIs By Address.
+
+This service accepts an address as input and returns nearby points-of-interest places around that address. Additional input features include retrieving data by name, type, standard industrial classifications and category codes, as well as geographic filtering by radius, travel times and travel distances. Response features include JSON/XML as well as CSV download.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -169,43 +201,44 @@ namespace Example
 {
     public class GetPOIsByAddressExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PlacesServiceApi();
-            var address = address_example;  // string | Address
-            var country = country_example;  // string | Country (optional) 
-            var name = name_example;  // string | Matched against Name, BrandName and Trade Name. Partial terms are also matched with fuzziness (max edit distance is 1) (optional) 
-            var type = type_example;  // string | Matched against the content which defines the type of the poi.  (optional) 
-            var categoryCode = categoryCode_example;  // string | Specific Category/Categories Codes for the desired POIs. Accepts a mix of 4 digit (Top Category), 6 digit (Second-Level Category) and 11 digit (Low-Level Category) Category Codes. https://developer.precisely.com/download?CategoryCodes.xlsx  (optional) 
-            var sicCode = sicCode_example;  // string | Specific SIC Codes/Codes for the desired POIs. Accepts a mix of 4 digit (Top Category) and 8 digit (Low-Level Category) SIC Codes. (optional) 
-            var maxCandidates = maxCandidates_example;  // string | Maximum number of POIs that can be retrieved. (optional) 
+            var apiInstance = new PlacesServiceApi(Configuration.Default);
+            var address = address_example;  // string | The address to be searched. (optional) 
+            var country = country_example;  // string | Country ISO code. (optional) 
+            var name = name_example;  // string | Specifies the name of the place (POI) to be searched. Also performs search on partially specified names. It requires minimum 3 characters to search. (optional) 
+            var type = type_example;  // string | Filters the points of interest (POIs) by place types. (optional) 
+            var categoryCode = categoryCode_example;  // string | Acts as a filter to narrow down and refine POI search results. The category codes are unique 4, 6, or 11 digit numeric values. (optional) 
+            var sicCode = sicCode_example;  // string | Acts as a filter to narrow down and refine POI search results. The SIC codes are unique 4 or 8 digit numerical values (optional) 
+            var maxCandidates = maxCandidates_example;  // string | Maximum number of POIs that can be retrieved (optional) 
             var searchRadius = searchRadius_example;  // string | Radius range within which search is performed. (optional) 
-            var searchRadiusUnit = searchRadiusUnit_example;  // string | Radius unit such as Feet, Kilometers, Miles or Meters. (optional) 
-            var travelTime = travelTime_example;  // string | Specifies the travel time within which method searches for results (POIs which can be reached within travel time)the search boundary in terms of time mentioned in 'travelTimeUnit'. The results are retrieved from the polygon formed based on the travel time specified. This means search can be done in the mentioned time results be from the mentioned time. (optional) 
-            var travelTimeUnit = travelTimeUnit_example;  // string | Specifies acceptable time units.Allowed values Minutes,Hours,Seconds and Milliseconds (optional) 
-            var travelDistance = travelDistance_example;  // string | Specifies the search boundary in terms of distance mentioned in 'travelDistanceUnit'. The results are retrieved from the polygon formed based on the travel distance specified. (optional) 
-            var travelDistanceUnit = travelDistanceUnit_example;  // string | Specifies acceptable time units.Allowed values Feet,Kilometers,Miles and Meters (optional) 
-            var travelMode = travelMode_example;  // string | Specifies the available mode of commute. This is required when u r trying to do search by travel distance or travel time. Allowed values driving and walking (optional) 
-            var sortBy = sortBy_example;  // string | Specifies the order in which POIs are retrieved. (optional)  (default to distance)
-            var fuzzyOnName = fuzzyOnName_example;  // string | Allowed values are Y/N. If N, the search on name will not allow fuzziness. (optional) 
-            var page = page_example;  // string | Will support pagination, by default 1st page with maxCandidates results are returned. (optional) 
-            var matchMode = matchMode_example;  // string |  (optional) 
-            var specificMatchOn = specificMatchOn_example;  // string |  (optional) 
+            var searchRadiusUnit = searchRadiusUnit_example;  // string | Radius unit such as Feet, Kilometers, Miles or Meters (default). (optional) 
+            var travelTime = travelTime_example;  // string | Travel time within which search is performed (POIs which can be reached within travel time). (optional) 
+            var travelTimeUnit = travelTimeUnit_example;  // string | Travel time unit such as minutes (default), hours, seconds or milliseconds. (optional) 
+            var travelDistance = travelDistance_example;  // string | Travel distance within which search is performed (POIs which can be reached within travel distance). (optional) 
+            var travelDistanceUnit = travelDistanceUnit_example;  // string | Travel distance unit such as Feet (default), Kilometers, Miles or Meters. (optional) 
+            var travelMode = travelMode_example;  // string | Mode of commute. (optional)  (default to "driving")
+            var sortBy = sortBy_example;  // string | Whether to sort the results based on relevance (best match) or by nearest distance from input location. (optional) 
+            var fuzzyOnName = fuzzyOnName_example;  // string | Whether to allow fuzzy seacrh on name input. (optional) 
+            var page = page_example;  // string | Specifies the page number of results where page size is the value of maxCandidates input in request. (optional) 
+            var matchMode = matchMode_example;  // string | Determine the leniency used to make a match between the input name and the reference data. (optional) 
+            var specificMatchOn = specificMatchOn_example;  // string | Specifies the field for the Specific Match Mode. (optional) 
 
             try
             {
-                // Points of Interest By Address.
-                GeoEnrichResponse result = apiInstance.GetPOIsByAddress(address, country, name, type, categoryCode, sicCode, maxCandidates, searchRadius, searchRadiusUnit, travelTime, travelTimeUnit, travelDistance, travelDistanceUnit, travelMode, sortBy, fuzzyOnName, page, matchMode, specificMatchOn);
+                // Get POIs By Address.
+                PlacesResponse result = apiInstance.GetPOIsByAddress(address, country, name, type, categoryCode, sicCode, maxCandidates, searchRadius, searchRadiusUnit, travelTime, travelTimeUnit, travelDistance, travelDistanceUnit, travelMode, sortBy, fuzzyOnName, page, matchMode, specificMatchOn);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling PlacesServiceApi.GetPOIsByAddress: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -214,31 +247,32 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **address** | **string**| Address | 
- **country** | **string**| Country | [optional] 
- **name** | **string**| Matched against Name, BrandName and Trade Name. Partial terms are also matched with fuzziness (max edit distance is 1) | [optional] 
- **type** | **string**| Matched against the content which defines the type of the poi.  | [optional] 
- **categoryCode** | **string**| Specific Category/Categories Codes for the desired POIs. Accepts a mix of 4 digit (Top Category), 6 digit (Second-Level Category) and 11 digit (Low-Level Category) Category Codes. https://developer.precisely.com/download?CategoryCodes.xlsx  | [optional] 
- **sicCode** | **string**| Specific SIC Codes/Codes for the desired POIs. Accepts a mix of 4 digit (Top Category) and 8 digit (Low-Level Category) SIC Codes. | [optional] 
- **maxCandidates** | **string**| Maximum number of POIs that can be retrieved. | [optional] 
+ **address** | **string**| The address to be searched. | [optional] 
+ **country** | **string**| Country ISO code. | [optional] 
+ **name** | **string**| Specifies the name of the place (POI) to be searched. Also performs search on partially specified names. It requires minimum 3 characters to search. | [optional] 
+ **type** | **string**| Filters the points of interest (POIs) by place types. | [optional] 
+ **categoryCode** | **string**| Acts as a filter to narrow down and refine POI search results. The category codes are unique 4, 6, or 11 digit numeric values. | [optional] 
+ **sicCode** | **string**| Acts as a filter to narrow down and refine POI search results. The SIC codes are unique 4 or 8 digit numerical values | [optional] 
+ **maxCandidates** | **string**| Maximum number of POIs that can be retrieved | [optional] 
  **searchRadius** | **string**| Radius range within which search is performed. | [optional] 
- **searchRadiusUnit** | **string**| Radius unit such as Feet, Kilometers, Miles or Meters. | [optional] 
- **travelTime** | **string**| Specifies the travel time within which method searches for results (POIs which can be reached within travel time)the search boundary in terms of time mentioned in &#39;travelTimeUnit&#39;. The results are retrieved from the polygon formed based on the travel time specified. This means search can be done in the mentioned time results be from the mentioned time. | [optional] 
- **travelTimeUnit** | **string**| Specifies acceptable time units.Allowed values Minutes,Hours,Seconds and Milliseconds | [optional] 
- **travelDistance** | **string**| Specifies the search boundary in terms of distance mentioned in &#39;travelDistanceUnit&#39;. The results are retrieved from the polygon formed based on the travel distance specified. | [optional] 
- **travelDistanceUnit** | **string**| Specifies acceptable time units.Allowed values Feet,Kilometers,Miles and Meters | [optional] 
- **travelMode** | **string**| Specifies the available mode of commute. This is required when u r trying to do search by travel distance or travel time. Allowed values driving and walking | [optional] 
- **sortBy** | **string**| Specifies the order in which POIs are retrieved. | [optional] [default to distance]
- **fuzzyOnName** | **string**| Allowed values are Y/N. If N, the search on name will not allow fuzziness. | [optional] 
- **page** | **string**| Will support pagination, by default 1st page with maxCandidates results are returned. | [optional] 
- **matchMode** | **string**|  | [optional] 
- **specificMatchOn** | **string**|  | [optional] 
+ **searchRadiusUnit** | **string**| Radius unit such as Feet, Kilometers, Miles or Meters (default). | [optional] 
+ **travelTime** | **string**| Travel time within which search is performed (POIs which can be reached within travel time). | [optional] 
+ **travelTimeUnit** | **string**| Travel time unit such as minutes (default), hours, seconds or milliseconds. | [optional] 
+ **travelDistance** | **string**| Travel distance within which search is performed (POIs which can be reached within travel distance). | [optional] 
+ **travelDistanceUnit** | **string**| Travel distance unit such as Feet (default), Kilometers, Miles or Meters. | [optional] 
+ **travelMode** | **string**| Mode of commute. | [optional] [default to &quot;driving&quot;]
+ **sortBy** | **string**| Whether to sort the results based on relevance (best match) or by nearest distance from input location. | [optional] 
+ **fuzzyOnName** | **string**| Whether to allow fuzzy seacrh on name input. | [optional] 
+ **page** | **string**| Specifies the page number of results where page size is the value of maxCandidates input in request. | [optional] 
+ **matchMode** | **string**| Determine the leniency used to make a match between the input name and the reference data. | [optional] 
+ **specificMatchOn** | **string**| Specifies the field for the Specific Match Mode. | [optional] 
 
 ### Return type
 
-[**GeoEnrichResponse**](GeoEnrichResponse.md)
+[**PlacesResponse**](PlacesResponse.md)
 
 ### Authorization
 
@@ -246,22 +280,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml, text/csv
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml, text/csv
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpoisbyarea"></a>
-# **GetPOIsByArea**
-> GeoEnrichResponse GetPOIsByArea (string country, string areaName3 = null, string postcode1 = null, string postcode2 = null, string name = null, string type = null, string categoryCode = null, string sicCode = null, string maxCandidates = null, string fuzzyOnName = null, string page = null, string matchMode = null, string specificMatchOn = null)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
 
-Points of Interest By Area.
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-Accepts postcode or city as an input to retrieve nearby points of interest.
+
+## GetPOIsByArea
+
+> PlacesResponse GetPOIsByArea (string areaName1 = null, string areaName3 = null, string postcode1 = null, string postcode2 = null, string country = null, string name = null, string type = null, string categoryCode = null, string sicCode = null, string maxCandidates = null, string fuzzyOnName = null, string page = null, string matchMode = null, string specificMatchOn = null)
+
+GET Points Of Interest By Area.
+
+This service accepts city or postcode (alongwith country) and returns points-of-interest places within a city or postcode. Additional input features include retrieving data by name, type, standard industrial classifications and category codes, as well as geographic filtering by radius, travel times and travel distances. Response features include JSON/XML as well as CSV download.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -271,37 +318,39 @@ namespace Example
 {
     public class GetPOIsByAreaExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PlacesServiceApi();
-            var country = country_example;  // string | Country
-            var areaName3 = areaName3_example;  // string | Either areaName3 or postcode is required (optional) 
-            var postcode1 = postcode1_example;  // string | Either areaName3 or postcode is required (optional) 
-            var postcode2 = postcode2_example;  // string | postcode extension (optional) 
-            var name = name_example;  // string | Matched against Name, BrandName and Trade Name. Partial terms are also matched with fuzziness (max edit distance is 1) (optional) 
-            var type = type_example;  // string | Matched against the content which defines the type of the poi.  (optional) 
-            var categoryCode = categoryCode_example;  // string | Specific Category/Categories Codes for the desired POIs. Accepts a mix of 4 digit (Top Category), 6 digit (Second-Level Category) and 11 digit (Low-Level Category) Category Codes. https://developer.precisely.com/download?CategoryCodes.xlsx  (optional) 
-            var sicCode = sicCode_example;  // string | Specific SIC Codes/Codes for the desired POIs. Accepts a mix of 4 digit (Top Category) and 8 digit (Low-Level Category) SIC Codes. (optional) 
-            var maxCandidates = maxCandidates_example;  // string | Maximum number of POIs that can be retrieved. (optional) 
-            var fuzzyOnName = fuzzyOnName_example;  // string | Allowed values are Y/N. If N, the search on name will not allow fuzziness. (optional) 
-            var page = page_example;  // string | Will support pagination, by default 1st page with maxCandidates results are returned. (optional) 
-            var matchMode = matchMode_example;  // string |  (optional) 
-            var specificMatchOn = specificMatchOn_example;  // string |  (optional) 
+            var apiInstance = new PlacesServiceApi(Configuration.Default);
+            var areaName1 = areaName1_example;  // string | Specifies the largest geographical area, typically a state or province (optional) 
+            var areaName3 = areaName3_example;  // string | Specifies a city or town name (optional) 
+            var postcode1 = postcode1_example;  // string | Specifies the postcode(ZIP code) in the appropriate format for the country (optional) 
+            var postcode2 = postcode2_example;  // string | Specifies the postcode(ZIP code) extension (optional) 
+            var country = country_example;  // string | Country ISO code (optional) 
+            var name = name_example;  // string | Specifies the name of the place (POI) to be searched. Also performs search on partially specified names. It requires minimum 3 characters to search (optional) 
+            var type = type_example;  // string | Filters the points of interest (POIs) by place types (optional) 
+            var categoryCode = categoryCode_example;  // string | Acts as a filter to narrow down and refine POI search results. The category codes are unique 4, 6, or 11 digit numeric values (optional) 
+            var sicCode = sicCode_example;  // string | Acts as a filter to narrow down and refine POI search results. The SIC codes are unique 4 or 8 digit numerical values (optional) 
+            var maxCandidates = maxCandidates_example;  // string | Maximum number of POIs that can be retrieved (optional) 
+            var fuzzyOnName = fuzzyOnName_example;  // string | Whether to allow fuzzy seacrh on name input (optional) 
+            var page = page_example;  // string | Specifies the page number of results where page size is the value of maxCandidates input in request (optional) 
+            var matchMode = matchMode_example;  // string | Determine the leniency used to make a match between the input name and the reference data (optional) 
+            var specificMatchOn = specificMatchOn_example;  // string | Specifies the field for the Specific Match Mode (optional) 
 
             try
             {
-                // Points of Interest By Area.
-                GeoEnrichResponse result = apiInstance.GetPOIsByArea(country, areaName3, postcode1, postcode2, name, type, categoryCode, sicCode, maxCandidates, fuzzyOnName, page, matchMode, specificMatchOn);
+                // GET Points Of Interest By Area.
+                PlacesResponse result = apiInstance.GetPOIsByArea(areaName1, areaName3, postcode1, postcode2, country, name, type, categoryCode, sicCode, maxCandidates, fuzzyOnName, page, matchMode, specificMatchOn);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling PlacesServiceApi.GetPOIsByArea: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -310,25 +359,27 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **country** | **string**| Country | 
- **areaName3** | **string**| Either areaName3 or postcode is required | [optional] 
- **postcode1** | **string**| Either areaName3 or postcode is required | [optional] 
- **postcode2** | **string**| postcode extension | [optional] 
- **name** | **string**| Matched against Name, BrandName and Trade Name. Partial terms are also matched with fuzziness (max edit distance is 1) | [optional] 
- **type** | **string**| Matched against the content which defines the type of the poi.  | [optional] 
- **categoryCode** | **string**| Specific Category/Categories Codes for the desired POIs. Accepts a mix of 4 digit (Top Category), 6 digit (Second-Level Category) and 11 digit (Low-Level Category) Category Codes. https://developer.precisely.com/download?CategoryCodes.xlsx  | [optional] 
- **sicCode** | **string**| Specific SIC Codes/Codes for the desired POIs. Accepts a mix of 4 digit (Top Category) and 8 digit (Low-Level Category) SIC Codes. | [optional] 
- **maxCandidates** | **string**| Maximum number of POIs that can be retrieved. | [optional] 
- **fuzzyOnName** | **string**| Allowed values are Y/N. If N, the search on name will not allow fuzziness. | [optional] 
- **page** | **string**| Will support pagination, by default 1st page with maxCandidates results are returned. | [optional] 
- **matchMode** | **string**|  | [optional] 
- **specificMatchOn** | **string**|  | [optional] 
+ **areaName1** | **string**| Specifies the largest geographical area, typically a state or province | [optional] 
+ **areaName3** | **string**| Specifies a city or town name | [optional] 
+ **postcode1** | **string**| Specifies the postcode(ZIP code) in the appropriate format for the country | [optional] 
+ **postcode2** | **string**| Specifies the postcode(ZIP code) extension | [optional] 
+ **country** | **string**| Country ISO code | [optional] 
+ **name** | **string**| Specifies the name of the place (POI) to be searched. Also performs search on partially specified names. It requires minimum 3 characters to search | [optional] 
+ **type** | **string**| Filters the points of interest (POIs) by place types | [optional] 
+ **categoryCode** | **string**| Acts as a filter to narrow down and refine POI search results. The category codes are unique 4, 6, or 11 digit numeric values | [optional] 
+ **sicCode** | **string**| Acts as a filter to narrow down and refine POI search results. The SIC codes are unique 4 or 8 digit numerical values | [optional] 
+ **maxCandidates** | **string**| Maximum number of POIs that can be retrieved | [optional] 
+ **fuzzyOnName** | **string**| Whether to allow fuzzy seacrh on name input | [optional] 
+ **page** | **string**| Specifies the page number of results where page size is the value of maxCandidates input in request | [optional] 
+ **matchMode** | **string**| Determine the leniency used to make a match between the input name and the reference data | [optional] 
+ **specificMatchOn** | **string**| Specifies the field for the Specific Match Mode | [optional] 
 
 ### Return type
 
-[**GeoEnrichResponse**](GeoEnrichResponse.md)
+[**PlacesResponse**](PlacesResponse.md)
 
 ### Authorization
 
@@ -336,22 +387,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml, text/csv
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml, text/csv
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpoisbyboundary"></a>
-# **GetPOIsByBoundary**
-> Pois GetPOIsByBoundary (string accept = null, string contentType = null, POIByGeometryRequest body = null)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPOIsByGeometry
+
+> PlacesResponse GetPOIsByGeometry (POIByGeometryRequest pOIByGeometryRequest)
 
 Points Of Interest By Boundary
 
 Accepts a user-defined boundary as input and returns all Points of Interest within the boundary. Additionally, user can filter the response by name, type, standard industrial classifications and category codes.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -359,29 +423,28 @@ using com.precisely.apis.Model;
 
 namespace Example
 {
-    public class GetPOIsByBoundaryExample
+    public class GetPOIsByGeometryExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PlacesServiceApi();
-            var accept = accept_example;  // string |  (optional) 
-            var contentType = contentType_example;  // string |  (optional) 
-            var body = new POIByGeometryRequest(); // POIByGeometryRequest |  (optional) 
+            var apiInstance = new PlacesServiceApi(Configuration.Default);
+            var pOIByGeometryRequest = new POIByGeometryRequest(); // POIByGeometryRequest | 
 
             try
             {
                 // Points Of Interest By Boundary
-                Pois result = apiInstance.GetPOIsByBoundary(accept, contentType, body);
+                PlacesResponse result = apiInstance.GetPOIsByGeometry(pOIByGeometryRequest);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling PlacesServiceApi.GetPOIsByBoundary: " + e.Message );
+                Debug.Print("Exception when calling PlacesServiceApi.GetPOIsByGeometry: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -390,15 +453,14 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accept** | **string**|  | [optional] 
- **contentType** | **string**|  | [optional] 
- **body** | [**POIByGeometryRequest**](POIByGeometryRequest.md)|  | [optional] 
+ **pOIByGeometryRequest** | [**POIByGeometryRequest**](POIByGeometryRequest.md)|  | 
 
 ### Return type
 
-[**Pois**](Pois.md)
+[**PlacesResponse**](PlacesResponse.md)
 
 ### Authorization
 
@@ -406,22 +468,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml, text/csv
+- **Content-Type**: application/json
+- **Accept**: application/json, application/xml, text/csv
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpoisbylocation"></a>
-# **GetPOIsByLocation**
-> GeoEnrichResponse GetPOIsByLocation (string longitude, string latitude, string searchText = null, string type = null, string categoryCode = null, string sicCode = null, string maxCandidates = null, string searchRadius = null, string searchRadiusUnit = null, string travelTime = null, string travelTimeUnit = null, string travelDistance = null, string travelDistanceUnit = null, string travelMode = null, string sortBy = null, string fuzzyOnName = null, string page = null, string searchOnNameOnly = null, string matchMode = null, string specificMatchOn = null)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
 
-Points of Interest By Location.
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-Accepts longitude and latitude as an input to retrieve nearby points of interest.
+
+## GetPOIsByLocation
+
+> PlacesResponse GetPOIsByLocation (string longitude, string latitude, string name = null, string type = null, string categoryCode = null, string sicCode = null, string maxCandidates = null, string searchRadius = null, string searchRadiusUnit = null, string travelTime = null, string travelTimeUnit = null, string travelDistance = null, string travelDistanceUnit = null, string travelMode = null, string sortBy = null, string fuzzyOnName = null, string page = null, string matchMode = null, string specificMatchOn = null)
+
+Get POIs By Location.
+
+This service accepts latitude/longitude as input and returns nearby points-of-interest places around that location. Additional input features include retrieving data by name, type, standard industrial classifications and category codes, as well as geographic filtering by radius, travel times and travel distances. Response features include JSON/XML as well as CSV download
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -431,44 +506,44 @@ namespace Example
 {
     public class GetPOIsByLocationExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PlacesServiceApi();
+            var apiInstance = new PlacesServiceApi(Configuration.Default);
             var longitude = longitude_example;  // string | Longitude of the location.
             var latitude = latitude_example;  // string | Latitude of the location.
-            var searchText = searchText_example;  // string | Matched against Name, BrandName and Trade Name. Partial terms are also matched with fuzziness (max edit distance is 1) (optional) 
-            var type = type_example;  // string | Matched against the content which defines the type of the poi.  (optional) 
-            var categoryCode = categoryCode_example;  // string | Specific Category/Categories Codes for the desired POIs. Accepts a mix of 4 digit (Top Category), 6 digit (Second-Level Category) and 11 digit (Low-Level Category) Category Codes. https://developer.precisely.com/download?CategoryCodes.xlsx  (optional) 
-            var sicCode = sicCode_example;  // string | Specific SIC Codes/Codes for the desired POIs. Accepts a mix of 4 digit (Top Category) and 8 digit (Low-Level Category) SIC Codes. (optional) 
-            var maxCandidates = maxCandidates_example;  // string | Maximum number of POIs that can be retrieved. (optional) 
+            var name = name_example;  // string | Specifies the name of the place (POI) to be searched. Also performs search on partially specified names. It requires minimum 3 characters to search. (optional) 
+            var type = type_example;  // string | Filters the points of interest (POIs) by place types. (optional) 
+            var categoryCode = categoryCode_example;  // string | Acts as a filter to narrow down and refine POI search results. The category codes are unique 4, 6, or 11 digit numeric values. (optional) 
+            var sicCode = sicCode_example;  // string | Acts as a filter to narrow down and refine POI search results. The SIC codes are unique 4 or 8 digit numerical values (optional) 
+            var maxCandidates = maxCandidates_example;  // string | Maximum number of POIs that can be retrieved (optional) 
             var searchRadius = searchRadius_example;  // string | Radius range within which search is performed. (optional) 
-            var searchRadiusUnit = searchRadiusUnit_example;  // string | Radius unit such as Feet, Kilometers, Miles or Meters. (optional) 
-            var travelTime = travelTime_example;  // string | Specifies the travel time within which method searches for results (POIs which can be reached within travel time)the search boundary in terms of time mentioned in 'travelTimeUnit'. The results are retrieved from the polygon formed based on the travel time specified. This means search can be done in the mentioned time results be from the mentioned time. (optional) 
-            var travelTimeUnit = travelTimeUnit_example;  // string | Specifies acceptable time units.Allowed values Minutes,Hours,Seconds and Milliseconds (optional) 
-            var travelDistance = travelDistance_example;  // string | Specifies the search boundary in terms of distance mentioned in 'travelDistanceUnit'. The results are retrieved from the polygon formed based on the travel distance specified. (optional) 
-            var travelDistanceUnit = travelDistanceUnit_example;  // string | Specifies acceptable time units.Allowed values Feet,Kilometers,Miles and Meters (optional) 
-            var travelMode = travelMode_example;  // string | Specifies the available mode of commute. This is required when u r trying to do search by travel distance or travel time. Allowed values driving and walking (optional) 
-            var sortBy = sortBy_example;  // string | Specifies the order in which POIs are retrieved. (optional)  (default to distance)
-            var fuzzyOnName = fuzzyOnName_example;  // string | Allowed values are Y/N. If N, the search on name will not allow fuzziness. (optional) 
-            var page = page_example;  // string | Will support pagination, by default 1st page with maxCandidates results are returned. (optional) 
-            var searchOnNameOnly = searchOnNameOnly_example;  // string | search name description (optional) 
-            var matchMode = matchMode_example;  // string |  (optional) 
-            var specificMatchOn = specificMatchOn_example;  // string |  (optional) 
+            var searchRadiusUnit = searchRadiusUnit_example;  // string | Radius unit such as Feet, Kilometers, Miles or Meters (default). (optional) 
+            var travelTime = travelTime_example;  // string | Travel time within which search is performed (POIs which can be reached within travel time). (optional) 
+            var travelTimeUnit = travelTimeUnit_example;  // string | Travel time unit such as minutes (default), hours, seconds or milliseconds. (optional) 
+            var travelDistance = travelDistance_example;  // string | Travel distance within which search is performed (POIs which can be reached within travel distance). (optional) 
+            var travelDistanceUnit = travelDistanceUnit_example;  // string | Travel distance unit such as Feet (default), Kilometers, Miles or Meters. (optional) 
+            var travelMode = travelMode_example;  // string | Mode of commute. (optional) 
+            var sortBy = sortBy_example;  // string | Whether to sort the results based on relevance (best match) or by nearest distance from input location. (optional) 
+            var fuzzyOnName = fuzzyOnName_example;  // string | Whether to allow fuzzy seacrh on name input. (optional) 
+            var page = page_example;  // string | Specifies the page number of results where page size is the value of maxCandidates input in request. (optional) 
+            var matchMode = matchMode_example;  // string | Determine the leniency used to make a match between the input name and the reference data. (optional) 
+            var specificMatchOn = specificMatchOn_example;  // string | Specifies the field for the Specific Match Mode. (optional) 
 
             try
             {
-                // Points of Interest By Location.
-                GeoEnrichResponse result = apiInstance.GetPOIsByLocation(longitude, latitude, searchText, type, categoryCode, sicCode, maxCandidates, searchRadius, searchRadiusUnit, travelTime, travelTimeUnit, travelDistance, travelDistanceUnit, travelMode, sortBy, fuzzyOnName, page, searchOnNameOnly, matchMode, specificMatchOn);
+                // Get POIs By Location.
+                PlacesResponse result = apiInstance.GetPOIsByLocation(longitude, latitude, name, type, categoryCode, sicCode, maxCandidates, searchRadius, searchRadiusUnit, travelTime, travelTimeUnit, travelDistance, travelDistanceUnit, travelMode, sortBy, fuzzyOnName, page, matchMode, specificMatchOn);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling PlacesServiceApi.GetPOIsByLocation: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -477,32 +552,32 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **longitude** | **string**| Longitude of the location. | 
  **latitude** | **string**| Latitude of the location. | 
- **searchText** | **string**| Matched against Name, BrandName and Trade Name. Partial terms are also matched with fuzziness (max edit distance is 1) | [optional] 
- **type** | **string**| Matched against the content which defines the type of the poi.  | [optional] 
- **categoryCode** | **string**| Specific Category/Categories Codes for the desired POIs. Accepts a mix of 4 digit (Top Category), 6 digit (Second-Level Category) and 11 digit (Low-Level Category) Category Codes. https://developer.precisely.com/download?CategoryCodes.xlsx  | [optional] 
- **sicCode** | **string**| Specific SIC Codes/Codes for the desired POIs. Accepts a mix of 4 digit (Top Category) and 8 digit (Low-Level Category) SIC Codes. | [optional] 
- **maxCandidates** | **string**| Maximum number of POIs that can be retrieved. | [optional] 
+ **name** | **string**| Specifies the name of the place (POI) to be searched. Also performs search on partially specified names. It requires minimum 3 characters to search. | [optional] 
+ **type** | **string**| Filters the points of interest (POIs) by place types. | [optional] 
+ **categoryCode** | **string**| Acts as a filter to narrow down and refine POI search results. The category codes are unique 4, 6, or 11 digit numeric values. | [optional] 
+ **sicCode** | **string**| Acts as a filter to narrow down and refine POI search results. The SIC codes are unique 4 or 8 digit numerical values | [optional] 
+ **maxCandidates** | **string**| Maximum number of POIs that can be retrieved | [optional] 
  **searchRadius** | **string**| Radius range within which search is performed. | [optional] 
- **searchRadiusUnit** | **string**| Radius unit such as Feet, Kilometers, Miles or Meters. | [optional] 
- **travelTime** | **string**| Specifies the travel time within which method searches for results (POIs which can be reached within travel time)the search boundary in terms of time mentioned in &#39;travelTimeUnit&#39;. The results are retrieved from the polygon formed based on the travel time specified. This means search can be done in the mentioned time results be from the mentioned time. | [optional] 
- **travelTimeUnit** | **string**| Specifies acceptable time units.Allowed values Minutes,Hours,Seconds and Milliseconds | [optional] 
- **travelDistance** | **string**| Specifies the search boundary in terms of distance mentioned in &#39;travelDistanceUnit&#39;. The results are retrieved from the polygon formed based on the travel distance specified. | [optional] 
- **travelDistanceUnit** | **string**| Specifies acceptable time units.Allowed values Feet,Kilometers,Miles and Meters | [optional] 
- **travelMode** | **string**| Specifies the available mode of commute. This is required when u r trying to do search by travel distance or travel time. Allowed values driving and walking | [optional] 
- **sortBy** | **string**| Specifies the order in which POIs are retrieved. | [optional] [default to distance]
- **fuzzyOnName** | **string**| Allowed values are Y/N. If N, the search on name will not allow fuzziness. | [optional] 
- **page** | **string**| Will support pagination, by default 1st page with maxCandidates results are returned. | [optional] 
- **searchOnNameOnly** | **string**| search name description | [optional] 
- **matchMode** | **string**|  | [optional] 
- **specificMatchOn** | **string**|  | [optional] 
+ **searchRadiusUnit** | **string**| Radius unit such as Feet, Kilometers, Miles or Meters (default). | [optional] 
+ **travelTime** | **string**| Travel time within which search is performed (POIs which can be reached within travel time). | [optional] 
+ **travelTimeUnit** | **string**| Travel time unit such as minutes (default), hours, seconds or milliseconds. | [optional] 
+ **travelDistance** | **string**| Travel distance within which search is performed (POIs which can be reached within travel distance). | [optional] 
+ **travelDistanceUnit** | **string**| Travel distance unit such as Feet (default), Kilometers, Miles or Meters. | [optional] 
+ **travelMode** | **string**| Mode of commute. | [optional] 
+ **sortBy** | **string**| Whether to sort the results based on relevance (best match) or by nearest distance from input location. | [optional] 
+ **fuzzyOnName** | **string**| Whether to allow fuzzy seacrh on name input. | [optional] 
+ **page** | **string**| Specifies the page number of results where page size is the value of maxCandidates input in request. | [optional] 
+ **matchMode** | **string**| Determine the leniency used to make a match between the input name and the reference data. | [optional] 
+ **specificMatchOn** | **string**| Specifies the field for the Specific Match Mode. | [optional] 
 
 ### Return type
 
-[**GeoEnrichResponse**](GeoEnrichResponse.md)
+[**PlacesResponse**](PlacesResponse.md)
 
 ### Authorization
 
@@ -510,22 +585,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml, text/csv
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml, text/csv
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpoiscount"></a>
-# **GetPOIsCount**
-> PoiCount GetPOIsCount (string contentType = null, PoiCountRequest body = null)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
 
-Point of Interests count By Geometry.
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-Accepts geometry/loc/address as an input to count nearby point of interests.
+
+## GetPOIsCount
+
+> PoiCount GetPOIsCount (string contentType, PoiCountRequest poiCountRequest)
+
+Points Of Interest Count
+
+Accepts a user-defined boundary as input and returns the Count number of POIs within the boundary. Additionally, user can request the count of filtered POIs by name, type, standard industrial classifications and category codes within the given polygon.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -535,26 +623,27 @@ namespace Example
 {
     public class GetPOIsCountExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PlacesServiceApi();
-            var contentType = contentType_example;  // string |  (optional) 
-            var body = new PoiCountRequest(); // PoiCountRequest |  (optional) 
+            var apiInstance = new PlacesServiceApi(Configuration.Default);
+            var contentType = contentType_example;  // string | 
+            var poiCountRequest = new PoiCountRequest(); // PoiCountRequest | 
 
             try
             {
-                // Point of Interests count By Geometry.
-                PoiCount result = apiInstance.GetPOIsCount(contentType, body);
+                // Points Of Interest Count
+                PoiCount result = apiInstance.GetPOIsCount(contentType, poiCountRequest);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling PlacesServiceApi.GetPOIsCount: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -563,10 +652,11 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **contentType** | **string**|  | [optional] 
- **body** | [**PoiCountRequest**](PoiCountRequest.md)|  | [optional] 
+ **contentType** | **string**|  | 
+ **poiCountRequest** | [**PoiCountRequest**](PoiCountRequest.md)|  | 
 
 ### Return type
 
@@ -578,22 +668,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml
+- **Content-Type**: application/json, application/xml
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getsicmetadata"></a>
-# **GetSICMetadata**
-> GeoEnrichMetadataResponse GetSICMetadata (string sicCode = null, string level = null)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
 
-Returns SIC Codes with their Industry Titles and Category Codes mapping
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-Accepts first few partial digits or full SIC codes to filter the response
+
+## GetSICMetadata
+
+> MetadataResponse GetSICMetadata (string sicCode = null, string level = null)
+
+Get SIC Metadata
+
+This service returns a list of standard industrial classification codes & associated metadata which can then be used as inputs for querying the Points of Interest By Address or Location methods listed above.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -603,26 +706,27 @@ namespace Example
 {
     public class GetSICMetadataExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PlacesServiceApi();
-            var sicCode = sicCode_example;  // string | Specify starting digits or full sic code to filter the response (optional) 
-            var level = level_example;  // string | Allowed values are 1,2. If level=1, then only 4 digits sic codes will be returned, level=2 means only 8 digits sic codes will be returned. Multiple comma-separated values will also be accepted. So level='1,2' means return both 4 digits and 8 digits sic codes. (optional) 
+            var apiInstance = new PlacesServiceApi(Configuration.Default);
+            var sicCode = sicCode_example;  // string | 4 or 8 digits SIC code to filter the response. (optional) 
+            var level = level_example;  // string | 1 or 2. (optional) 
 
             try
             {
-                // Returns SIC Codes with their Industry Titles and Category Codes mapping
-                GeoEnrichMetadataResponse result = apiInstance.GetSICMetadata(sicCode, level);
+                // Get SIC Metadata
+                MetadataResponse result = apiInstance.GetSICMetadata(sicCode, level);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling PlacesServiceApi.GetSICMetadata: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -631,14 +735,15 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sicCode** | **string**| Specify starting digits or full sic code to filter the response | [optional] 
- **level** | **string**| Allowed values are 1,2. If level&#x3D;1, then only 4 digits sic codes will be returned, level&#x3D;2 means only 8 digits sic codes will be returned. Multiple comma-separated values will also be accepted. So level&#x3D;&#39;1,2&#39; means return both 4 digits and 8 digits sic codes. | [optional] 
+ **sicCode** | **string**| 4 or 8 digits SIC code to filter the response. | [optional] 
+ **level** | **string**| 1 or 2. | [optional] 
 
 ### Return type
 
-[**GeoEnrichMetadataResponse**](GeoEnrichMetadataResponse.md)
+[**MetadataResponse**](MetadataResponse.md)
 
 ### Authorization
 
@@ -646,22 +751,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml, text/csv
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml, text/csv
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="poisautocomplete"></a>
-# **PoisAutocomplete**
-> GeoEnrichResponse PoisAutocomplete (string longitude = null, string latitude = null, string searchText = null, string searchRadius = null, string searchRadiusUnit = null, string travelTime = null, string travelTimeUnit = null, string travelDistance = null, string travelDistanceUnit = null, string travelMode = null, string country = null, string areaName1 = null, string areaName3 = null, string postcode1 = null, string postcode2 = null, string ipAddress = null, string autoDetectLocation = null, string type = null, string categoryCode = null, string sicCode = null, string maxCandidates = null, string sortBy = null, string searchOnNameOnly = null, string matchMode = null, string specificMatchOn = null)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
 
-Points of Interest Autocomplete.
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-POIs-Autocomplete will return POIs predictions based on the full or partial words specified in the search.The search can then be narrowed based on Location, IP Address or Country along with other supporting filters.
+
+## PoisAutocomplete
+
+> PlacesResponse PoisAutocomplete (string xForwardedFor = null, string longitude = null, string latitude = null, string searchText = null, string searchOnNameOnly = null, string searchRadius = null, string searchRadiusUnit = null, string travelTime = null, string travelTimeUnit = null, string travelDistance = null, string travelDistanceUnit = null, string travelMode = null, string country = null, string areaName1 = null, string areaName3 = null, string postcode1 = null, string postcode2 = null, string ipAddress = null, string autoDetectLocation = null, string type = null, string categoryCode = null, string sicCode = null, string maxCandidates = null, string sortBy = null, string matchMode = null, string specificMatchOn = null)
+
+Points Of Interest Autocomplete
+
+This service accepts partial text input and returns matching points of interest, sorted by relevance or distance.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -671,49 +789,51 @@ namespace Example
 {
     public class PoisAutocompleteExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PlacesServiceApi();
+            var apiInstance = new PlacesServiceApi(Configuration.Default);
+            var xForwardedFor = xForwardedFor_example;  // string |  (optional) 
             var longitude = longitude_example;  // string | Longitude of the location. (optional) 
             var latitude = latitude_example;  // string | Latitude of the location. (optional) 
-            var searchText = searchText_example;  // string | Matched against Name, BrandName and Trade Name. Partial terms are also matched with fuzziness (max edit distance is 1) (optional) 
+            var searchText = searchText_example;  // string | Free text which will accept a multi-word string. Combination of POI name and address is possible. (optional) 
+            var searchOnNameOnly = searchOnNameOnly_example;  // string |  (optional)  (default to "N")
             var searchRadius = searchRadius_example;  // string | Radius range within which search is performed. (optional) 
-            var searchRadiusUnit = searchRadiusUnit_example;  // string | Radius unit such as Feet, Kilometers, Miles or Meters. (optional) 
-            var travelTime = travelTime_example;  // string | Specifies the travel time within which method searches for results (POIs which can be reached within travel time)the search boundary in terms of time mentioned in 'travelTimeUnit'. The results are retrieved from the polygon formed based on the travel time specified. This means search can be done in the mentioned time results be from the mentioned time. (optional) 
-            var travelTimeUnit = travelTimeUnit_example;  // string | Specifies acceptable time units.Allowed values Minutes,Hours,Seconds and Milliseconds (optional) 
-            var travelDistance = travelDistance_example;  // string | Specifies the search boundary in terms of distance mentioned in 'travelDistanceUnit'. The results are retrieved from the polygon formed based on the travel distance specified. (optional) 
-            var travelDistanceUnit = travelDistanceUnit_example;  // string | Specifies acceptable time units.Allowed values Feet,Kilometers,Miles and Meters (optional) 
-            var travelMode = travelMode_example;  // string | Specifies the available mode of commute. This is required when u r trying to do search by travel distance or travel time. Allowed values driving and walking (optional) 
-            var country = country_example;  // string | Country (optional) 
+            var searchRadiusUnit = searchRadiusUnit_example;  // string | Radius unit such as Feet, Kilometers, Miles or Meters (default). (optional) 
+            var travelTime = travelTime_example;  // string | Travel time within which search is performed (POIs which can be reached within travel time). (optional) 
+            var travelTimeUnit = travelTimeUnit_example;  // string | Travel time unit such as minutes (default), hours, seconds or milliseconds. (optional) 
+            var travelDistance = travelDistance_example;  // string | Travel distance within which search is performed (POIs which can be reached within travel distance). (optional) 
+            var travelDistanceUnit = travelDistanceUnit_example;  // string | Travel distance unit such as Feet (default), Kilometers, Miles or Meters. (optional) 
+            var travelMode = travelMode_example;  // string | Mode of commute. (optional)  (default to "driving")
+            var country = country_example;  // string | Country ISO code. (optional) 
             var areaName1 = areaName1_example;  // string | Specifies the largest geographical area, typically a state or province. (optional) 
-            var areaName3 = areaName3_example;  // string | Specifies the name of the city or town.  (optional) 
-            var postcode1 = postcode1_example;  // string | Postal Code of the input to be searched (optional) 
-            var postcode2 = postcode2_example;  // string | Postcode2 (optional) 
-            var ipAddress = ipAddress_example;  // string | IP address of network connected device in standard IPv4 octet and a valid external address. (optional) 
-            var autoDetectLocation = autoDetectLocation_example;  // string | Specifies whether to auto-detect location from IP address. If 'True' is set, the location is detected from the specified ip address. If 'False' is set. the search will happen according to country or location. (optional) 
-            var type = type_example;  // string | Matched against the content which defines the type of the poi.  (optional) 
-            var categoryCode = categoryCode_example;  // string | Specific Category/Categories Codes for the desired POIs. Accepts a mix of 4 digit (Top Category), 6 digit (Second-Level Category) and 11 digit (Low-Level Category) Category Codes. https://developer.precisely.com/download?CategoryCodes.xlsx  (optional) 
-            var sicCode = sicCode_example;  // string | Specific SIC Codes/Codes for the desired POIs. Accepts a mix of 4 digit (Top Category) and 8 digit (Low-Level Category) SIC Codes. (optional) 
+            var areaName3 = areaName3_example;  // string | Specifies a city or town name. (optional) 
+            var postcode1 = postcode1_example;  // string | Specifies the postcode(ZIP code) in the appropriate format for the country. (optional) 
+            var postcode2 = postcode2_example;  // string | Specifies the postcode(ZIP code) extension. (optional) 
+            var ipAddress = ipAddress_example;  // string | IP address which will be used to auto detect the location in order to serve contextually relevant results. (optional) 
+            var autoDetectLocation = autoDetectLocation_example;  // string | Specifies whether to detect client's location using IP address. If IP address(below) is not provided and autoDetectLocation is set 'True' then IP address will be picked from HTTP request automatically. (optional) 
+            var type = type_example;  // string | Filters the points of interest (POIs) by place types. (optional) 
+            var categoryCode = categoryCode_example;  // string | Acts as a filter to narrow down and refine POI search results. The category codes are unique 4, 6, or 11 digit numeric values. (optional) 
+            var sicCode = sicCode_example;  // string | Acts as a filter to narrow down and refine POI search results. The SIC codes are unique 4 or 8 digit numerical values. (optional) 
             var maxCandidates = maxCandidates_example;  // string | Maximum number of POIs that can be retrieved. (optional) 
-            var sortBy = sortBy_example;  // string | Specifies the order in which POIs are retrieved. (optional)  (default to distance)
-            var searchOnNameOnly = searchOnNameOnly_example;  // string | specifies search on name (optional) 
-            var matchMode = matchMode_example;  // string |  (optional) 
-            var specificMatchOn = specificMatchOn_example;  // string |  (optional) 
+            var sortBy = sortBy_example;  // string | sortBy (optional) 
+            var matchMode = matchMode_example;  // string | Determine the leniency used to make a match between the input name and the reference data. (optional) 
+            var specificMatchOn = specificMatchOn_example;  // string | Specifies the field for the Specific Match Mode. (optional) 
 
             try
             {
-                // Points of Interest Autocomplete.
-                GeoEnrichResponse result = apiInstance.PoisAutocomplete(longitude, latitude, searchText, searchRadius, searchRadiusUnit, travelTime, travelTimeUnit, travelDistance, travelDistanceUnit, travelMode, country, areaName1, areaName3, postcode1, postcode2, ipAddress, autoDetectLocation, type, categoryCode, sicCode, maxCandidates, sortBy, searchOnNameOnly, matchMode, specificMatchOn);
+                // Points Of Interest Autocomplete
+                PlacesResponse result = apiInstance.PoisAutocomplete(xForwardedFor, longitude, latitude, searchText, searchOnNameOnly, searchRadius, searchRadiusUnit, travelTime, travelTimeUnit, travelDistance, travelDistanceUnit, travelMode, country, areaName1, areaName3, postcode1, postcode2, ipAddress, autoDetectLocation, type, categoryCode, sicCode, maxCandidates, sortBy, matchMode, specificMatchOn);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling PlacesServiceApi.PoisAutocomplete: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -722,37 +842,39 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xForwardedFor** | **string**|  | [optional] 
  **longitude** | **string**| Longitude of the location. | [optional] 
  **latitude** | **string**| Latitude of the location. | [optional] 
- **searchText** | **string**| Matched against Name, BrandName and Trade Name. Partial terms are also matched with fuzziness (max edit distance is 1) | [optional] 
+ **searchText** | **string**| Free text which will accept a multi-word string. Combination of POI name and address is possible. | [optional] 
+ **searchOnNameOnly** | **string**|  | [optional] [default to &quot;N&quot;]
  **searchRadius** | **string**| Radius range within which search is performed. | [optional] 
- **searchRadiusUnit** | **string**| Radius unit such as Feet, Kilometers, Miles or Meters. | [optional] 
- **travelTime** | **string**| Specifies the travel time within which method searches for results (POIs which can be reached within travel time)the search boundary in terms of time mentioned in &#39;travelTimeUnit&#39;. The results are retrieved from the polygon formed based on the travel time specified. This means search can be done in the mentioned time results be from the mentioned time. | [optional] 
- **travelTimeUnit** | **string**| Specifies acceptable time units.Allowed values Minutes,Hours,Seconds and Milliseconds | [optional] 
- **travelDistance** | **string**| Specifies the search boundary in terms of distance mentioned in &#39;travelDistanceUnit&#39;. The results are retrieved from the polygon formed based on the travel distance specified. | [optional] 
- **travelDistanceUnit** | **string**| Specifies acceptable time units.Allowed values Feet,Kilometers,Miles and Meters | [optional] 
- **travelMode** | **string**| Specifies the available mode of commute. This is required when u r trying to do search by travel distance or travel time. Allowed values driving and walking | [optional] 
- **country** | **string**| Country | [optional] 
+ **searchRadiusUnit** | **string**| Radius unit such as Feet, Kilometers, Miles or Meters (default). | [optional] 
+ **travelTime** | **string**| Travel time within which search is performed (POIs which can be reached within travel time). | [optional] 
+ **travelTimeUnit** | **string**| Travel time unit such as minutes (default), hours, seconds or milliseconds. | [optional] 
+ **travelDistance** | **string**| Travel distance within which search is performed (POIs which can be reached within travel distance). | [optional] 
+ **travelDistanceUnit** | **string**| Travel distance unit such as Feet (default), Kilometers, Miles or Meters. | [optional] 
+ **travelMode** | **string**| Mode of commute. | [optional] [default to &quot;driving&quot;]
+ **country** | **string**| Country ISO code. | [optional] 
  **areaName1** | **string**| Specifies the largest geographical area, typically a state or province. | [optional] 
- **areaName3** | **string**| Specifies the name of the city or town.  | [optional] 
- **postcode1** | **string**| Postal Code of the input to be searched | [optional] 
- **postcode2** | **string**| Postcode2 | [optional] 
- **ipAddress** | **string**| IP address of network connected device in standard IPv4 octet and a valid external address. | [optional] 
- **autoDetectLocation** | **string**| Specifies whether to auto-detect location from IP address. If &#39;True&#39; is set, the location is detected from the specified ip address. If &#39;False&#39; is set. the search will happen according to country or location. | [optional] 
- **type** | **string**| Matched against the content which defines the type of the poi.  | [optional] 
- **categoryCode** | **string**| Specific Category/Categories Codes for the desired POIs. Accepts a mix of 4 digit (Top Category), 6 digit (Second-Level Category) and 11 digit (Low-Level Category) Category Codes. https://developer.precisely.com/download?CategoryCodes.xlsx  | [optional] 
- **sicCode** | **string**| Specific SIC Codes/Codes for the desired POIs. Accepts a mix of 4 digit (Top Category) and 8 digit (Low-Level Category) SIC Codes. | [optional] 
+ **areaName3** | **string**| Specifies a city or town name. | [optional] 
+ **postcode1** | **string**| Specifies the postcode(ZIP code) in the appropriate format for the country. | [optional] 
+ **postcode2** | **string**| Specifies the postcode(ZIP code) extension. | [optional] 
+ **ipAddress** | **string**| IP address which will be used to auto detect the location in order to serve contextually relevant results. | [optional] 
+ **autoDetectLocation** | **string**| Specifies whether to detect client&#39;s location using IP address. If IP address(below) is not provided and autoDetectLocation is set &#39;True&#39; then IP address will be picked from HTTP request automatically. | [optional] 
+ **type** | **string**| Filters the points of interest (POIs) by place types. | [optional] 
+ **categoryCode** | **string**| Acts as a filter to narrow down and refine POI search results. The category codes are unique 4, 6, or 11 digit numeric values. | [optional] 
+ **sicCode** | **string**| Acts as a filter to narrow down and refine POI search results. The SIC codes are unique 4 or 8 digit numerical values. | [optional] 
  **maxCandidates** | **string**| Maximum number of POIs that can be retrieved. | [optional] 
- **sortBy** | **string**| Specifies the order in which POIs are retrieved. | [optional] [default to distance]
- **searchOnNameOnly** | **string**| specifies search on name | [optional] 
- **matchMode** | **string**|  | [optional] 
- **specificMatchOn** | **string**|  | [optional] 
+ **sortBy** | **string**| sortBy | [optional] 
+ **matchMode** | **string**| Determine the leniency used to make a match between the input name and the reference data. | [optional] 
+ **specificMatchOn** | **string**| Specifies the field for the Specific Match Mode. | [optional] 
 
 ### Return type
 
-[**GeoEnrichResponse**](GeoEnrichResponse.md)
+[**PlacesResponse**](PlacesResponse.md)
 
 ### Authorization
 
@@ -760,8 +882,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 

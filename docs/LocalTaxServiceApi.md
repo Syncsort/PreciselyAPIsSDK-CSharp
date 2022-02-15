@@ -9,24 +9,26 @@ Method | HTTP request | Description
 [**GetBatchTaxRateByAddress**](LocalTaxServiceApi.md#getbatchtaxratebyaddress) | **POST** /localtax/v1/taxrate/{taxRateTypeId}/byaddress | Post Taxrate By Address
 [**GetBatchTaxRateByLocation**](LocalTaxServiceApi.md#getbatchtaxratebylocation) | **POST** /localtax/v1/taxrate/{taxRateTypeId}/bylocation | Post Taxrate By Location
 [**GetIPDTaxByAddress**](LocalTaxServiceApi.md#getipdtaxbyaddress) | **GET** /localtax/v1/taxdistrict/ipd/byaddress | Get IPD Tax by Address
-[**GetIPDTaxByAddressBatch**](LocalTaxServiceApi.md#getipdtaxbyaddressbatch) | **POST** /localtax/v1/taxdistrict/ipd/byaddress | Get IPD Tax for batch requests
+[**GetIPDTaxByAddressBatch**](LocalTaxServiceApi.md#getipdtaxbyaddressbatch) | **POST** /localtax/v1/taxdistrict/ipd/byaddress | Get IPD Tax for batch requests.
 [**GetSpecificTaxByAddress**](LocalTaxServiceApi.md#getspecifictaxbyaddress) | **GET** /localtax/v1/tax/{taxRateTypeId}/byaddress | Get Tax By Address
 [**GetSpecificTaxByLocation**](LocalTaxServiceApi.md#getspecifictaxbylocation) | **GET** /localtax/v1/tax/{taxRateTypeId}/bylocation | Get Tax By Location
 [**GetSpecificTaxRateByAddress**](LocalTaxServiceApi.md#getspecifictaxratebyaddress) | **GET** /localtax/v1/taxrate/{taxRateTypeId}/byaddress | Get Taxrate By Address
 [**GetSpecificTaxRateByLocation**](LocalTaxServiceApi.md#getspecifictaxratebylocation) | **GET** /localtax/v1/taxrate/{taxRateTypeId}/bylocation | Get Taxrate By Location
 
 
-<a name="getbatchtaxbyaddress"></a>
-# **GetBatchTaxByAddress**
-> TaxResponses GetBatchTaxByAddress (string taxRateTypeId, TaxAddressRequest body)
+
+## GetBatchTaxByAddress
+
+> TaxResponses GetBatchTaxByAddress (string taxRateTypeId, TaxAddressRequest taxAddressRequest)
 
 Post Tax By Address
 
 This is a Batch offering for 'Tax By Address' service. It accepts a single address, purchase amount or a list of addresses, purchase amounts and retrieve applicable taxes.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -36,26 +38,27 @@ namespace Example
 {
     public class GetBatchTaxByAddressExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LocalTaxServiceApi();
-            var taxRateTypeId = taxRateTypeId_example;  // string | The tax rate id.
-            var body = new TaxAddressRequest(); // TaxAddressRequest | TaxAddressRequest Class Object having tax request.
+            var apiInstance = new LocalTaxServiceApi(Configuration.Default);
+            var taxRateTypeId = taxRateTypeId_example;  // string | 
+            var taxAddressRequest = new TaxAddressRequest(); // TaxAddressRequest | 
 
             try
             {
                 // Post Tax By Address
-                TaxResponses result = apiInstance.GetBatchTaxByAddress(taxRateTypeId, body);
+                TaxResponses result = apiInstance.GetBatchTaxByAddress(taxRateTypeId, taxAddressRequest);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling LocalTaxServiceApi.GetBatchTaxByAddress: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -64,10 +67,11 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **taxRateTypeId** | **string**| The tax rate id. | 
- **body** | [**TaxAddressRequest**](TaxAddressRequest.md)| TaxAddressRequest Class Object having tax request. | 
+ **taxRateTypeId** | **string**|  | 
+ **taxAddressRequest** | [**TaxAddressRequest**](TaxAddressRequest.md)|  | 
 
 ### Return type
 
@@ -79,22 +83,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/xml, application/json
+- **Content-Type**: application/json
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getbatchtaxbylocation"></a>
-# **GetBatchTaxByLocation**
-> TaxLocationResponses GetBatchTaxByLocation (string taxRateTypeId, TaxLocationRequest body)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetBatchTaxByLocation
+
+> TaxResponses GetBatchTaxByLocation (string taxRateTypeId, TaxLocationRequest taxLocationRequest)
 
 Post Tax By Location
 
 This is a Batch offering for 'Tax By Location' service. It accepts a single location coordinate, purchase amount or a list of location coordinates, purchase amounts and retrieve applicable tax.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -104,26 +121,27 @@ namespace Example
 {
     public class GetBatchTaxByLocationExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LocalTaxServiceApi();
-            var taxRateTypeId = taxRateTypeId_example;  // string | The tax rate id.
-            var body = new TaxLocationRequest(); // TaxLocationRequest | TaxAddressRequest Class Object having tax request.
+            var apiInstance = new LocalTaxServiceApi(Configuration.Default);
+            var taxRateTypeId = taxRateTypeId_example;  // string | 
+            var taxLocationRequest = new TaxLocationRequest(); // TaxLocationRequest | 
 
             try
             {
                 // Post Tax By Location
-                TaxLocationResponses result = apiInstance.GetBatchTaxByLocation(taxRateTypeId, body);
+                TaxResponses result = apiInstance.GetBatchTaxByLocation(taxRateTypeId, taxLocationRequest);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling LocalTaxServiceApi.GetBatchTaxByLocation: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -132,14 +150,15 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **taxRateTypeId** | **string**| The tax rate id. | 
- **body** | [**TaxLocationRequest**](TaxLocationRequest.md)| TaxAddressRequest Class Object having tax request. | 
+ **taxRateTypeId** | **string**|  | 
+ **taxLocationRequest** | [**TaxLocationRequest**](TaxLocationRequest.md)|  | 
 
 ### Return type
 
-[**TaxLocationResponses**](TaxLocationResponses.md)
+[**TaxResponses**](TaxResponses.md)
 
 ### Authorization
 
@@ -147,22 +166,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/xml, application/json
+- **Content-Type**: application/json
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getbatchtaxratebyaddress"></a>
-# **GetBatchTaxRateByAddress**
-> TaxRateResponses GetBatchTaxRateByAddress (string taxRateTypeId, TaxRateAddressRequest body)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetBatchTaxRateByAddress
+
+> TaxResponses GetBatchTaxRateByAddress (string taxRateTypeId, TaxRateAddressRequest taxRateAddressRequest)
 
 Post Taxrate By Address
 
 This is a Batch offering for 'Taxrate By Address' service. It accepts a single address or a list of addresses and retrieve applicable tax rates.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -172,26 +204,27 @@ namespace Example
 {
     public class GetBatchTaxRateByAddressExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LocalTaxServiceApi();
-            var taxRateTypeId = taxRateTypeId_example;  // string | The tax rate id.
-            var body = new TaxRateAddressRequest(); // TaxRateAddressRequest | TaxRateAddressRequest Class Object having tax rate request.
+            var apiInstance = new LocalTaxServiceApi(Configuration.Default);
+            var taxRateTypeId = taxRateTypeId_example;  // string | 
+            var taxRateAddressRequest = new TaxRateAddressRequest(); // TaxRateAddressRequest | 
 
             try
             {
                 // Post Taxrate By Address
-                TaxRateResponses result = apiInstance.GetBatchTaxRateByAddress(taxRateTypeId, body);
+                TaxResponses result = apiInstance.GetBatchTaxRateByAddress(taxRateTypeId, taxRateAddressRequest);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling LocalTaxServiceApi.GetBatchTaxRateByAddress: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -200,14 +233,15 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **taxRateTypeId** | **string**| The tax rate id. | 
- **body** | [**TaxRateAddressRequest**](TaxRateAddressRequest.md)| TaxRateAddressRequest Class Object having tax rate request. | 
+ **taxRateTypeId** | **string**|  | 
+ **taxRateAddressRequest** | [**TaxRateAddressRequest**](TaxRateAddressRequest.md)|  | 
 
 ### Return type
 
-[**TaxRateResponses**](TaxRateResponses.md)
+[**TaxResponses**](TaxResponses.md)
 
 ### Authorization
 
@@ -215,22 +249,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/xml, application/json
- - **Accept**: application/xml, application/json
+- **Content-Type**: application/json
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getbatchtaxratebylocation"></a>
-# **GetBatchTaxRateByLocation**
-> TaxRateLocationResponses GetBatchTaxRateByLocation (string taxRateTypeId, TaxRateLocationRequest body)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetBatchTaxRateByLocation
+
+> TaxResponses GetBatchTaxRateByLocation (string taxRateTypeId, TaxRateLocationRequest taxRateLocationRequest)
 
 Post Taxrate By Location
 
 This is a Batch offering for 'Taxrate By Location' service. It accepts a single location coordinate or a list of location coordinates and retrieve applicable tax rates.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -240,26 +287,27 @@ namespace Example
 {
     public class GetBatchTaxRateByLocationExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LocalTaxServiceApi();
-            var taxRateTypeId = taxRateTypeId_example;  // string | The tax rate id.
-            var body = new TaxRateLocationRequest(); // TaxRateLocationRequest | TaxRateLocationRequest Class Object having tax rate request.
+            var apiInstance = new LocalTaxServiceApi(Configuration.Default);
+            var taxRateTypeId = taxRateTypeId_example;  // string | 
+            var taxRateLocationRequest = new TaxRateLocationRequest(); // TaxRateLocationRequest | 
 
             try
             {
                 // Post Taxrate By Location
-                TaxRateLocationResponses result = apiInstance.GetBatchTaxRateByLocation(taxRateTypeId, body);
+                TaxResponses result = apiInstance.GetBatchTaxRateByLocation(taxRateTypeId, taxRateLocationRequest);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling LocalTaxServiceApi.GetBatchTaxRateByLocation: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -268,14 +316,15 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **taxRateTypeId** | **string**| The tax rate id. | 
- **body** | [**TaxRateLocationRequest**](TaxRateLocationRequest.md)| TaxRateLocationRequest Class Object having tax rate request. | 
+ **taxRateTypeId** | **string**|  | 
+ **taxRateLocationRequest** | [**TaxRateLocationRequest**](TaxRateLocationRequest.md)|  | 
 
 ### Return type
 
-[**TaxRateLocationResponses**](TaxRateLocationResponses.md)
+[**TaxResponses**](TaxResponses.md)
 
 ### Authorization
 
@@ -283,22 +332,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/xml, application/json
- - **Accept**: application/xml, application/json
+- **Content-Type**: application/json
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getipdtaxbyaddress"></a>
-# **GetIPDTaxByAddress**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetIPDTaxByAddress
+
 > TaxDistrictResponse GetIPDTaxByAddress (string address, string returnLatLongFields = null, string latLongFormat = null)
 
 Get IPD Tax by Address
 
-This will accept 'address' as a parameter and will return one or many IPDs details for that region in which address will fall.
+Retrieves IPD (Insurance Premium District) tax rates applicable to a specific address. This service accepts address as input and returns one or many IPD tax rate details for that region in which address falls.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -308,17 +370,16 @@ namespace Example
 {
     public class GetIPDTaxByAddressExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LocalTaxServiceApi();
+            var apiInstance = new LocalTaxServiceApi(Configuration.Default);
             var address = address_example;  // string | The address to be searched.
-            var returnLatLongFields = returnLatLongFields_example;  // string | Y or N (default is N) - Returns Latitude Longitude Fields (optional) 
-            var latLongFormat = latLongFormat_example;  // string | (default is Decimal) - Returns Desired Latitude Longitude Format (optional) 
+            var returnLatLongFields = returnLatLongFields_example;  // string | Y or N (default is N) - Returns Latitude Longitude Fields. (optional) 
+            var latLongFormat = latLongFormat_example;  // string | (default is Decimal) - Returns Desired Latitude Longitude Format. (optional) 
 
             try
             {
@@ -326,9 +387,11 @@ namespace Example
                 TaxDistrictResponse result = apiInstance.GetIPDTaxByAddress(address, returnLatLongFields, latLongFormat);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling LocalTaxServiceApi.GetIPDTaxByAddress: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -337,11 +400,12 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **address** | **string**| The address to be searched. | 
- **returnLatLongFields** | **string**| Y or N (default is N) - Returns Latitude Longitude Fields | [optional] 
- **latLongFormat** | **string**| (default is Decimal) - Returns Desired Latitude Longitude Format | [optional] 
+ **returnLatLongFields** | **string**| Y or N (default is N) - Returns Latitude Longitude Fields. | [optional] 
+ **latLongFormat** | **string**| (default is Decimal) - Returns Desired Latitude Longitude Format. | [optional] 
 
 ### Return type
 
@@ -353,22 +417,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getipdtaxbyaddressbatch"></a>
-# **GetIPDTaxByAddressBatch**
-> TaxDistrictResponseList GetIPDTaxByAddressBatch (IPDTaxByAddressBatchRequest body)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
 
-Get IPD Tax for batch requests
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-Get IPD Tax for batch requests
+
+## GetIPDTaxByAddressBatch
+
+> TaxDistrictResponseList GetIPDTaxByAddressBatch (IPDTaxByAddressBatchRequest iPDTaxByAddressBatchRequest)
+
+Get IPD Tax for batch requests.
+
+This is a Batch offering for 'IPD Tax rates By Address'. It accepts multiple addresses as parameters along with geocoding and matching preferences and returns one or many IPD tax rate details for each address.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -378,25 +455,26 @@ namespace Example
 {
     public class GetIPDTaxByAddressBatchExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LocalTaxServiceApi();
-            var body = new IPDTaxByAddressBatchRequest(); // IPDTaxByAddressBatchRequest | IPDTaxByAddressBatchRequest Class Object having IPD tax request
+            var apiInstance = new LocalTaxServiceApi(Configuration.Default);
+            var iPDTaxByAddressBatchRequest = new IPDTaxByAddressBatchRequest(); // IPDTaxByAddressBatchRequest | 
 
             try
             {
-                // Get IPD Tax for batch requests
-                TaxDistrictResponseList result = apiInstance.GetIPDTaxByAddressBatch(body);
+                // Get IPD Tax for batch requests.
+                TaxDistrictResponseList result = apiInstance.GetIPDTaxByAddressBatch(iPDTaxByAddressBatchRequest);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling LocalTaxServiceApi.GetIPDTaxByAddressBatch: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -405,9 +483,10 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**IPDTaxByAddressBatchRequest**](IPDTaxByAddressBatchRequest.md)| IPDTaxByAddressBatchRequest Class Object having IPD tax request | 
+ **iPDTaxByAddressBatchRequest** | [**IPDTaxByAddressBatchRequest**](IPDTaxByAddressBatchRequest.md)|  | 
 
 ### Return type
 
@@ -419,22 +498,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml
+- **Content-Type**: application/json
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getspecifictaxbyaddress"></a>
-# **GetSpecificTaxByAddress**
-> TaxResponse GetSpecificTaxByAddress (string taxRateTypeId, string address, string purchaseAmount)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSpecificTaxByAddress
+
+> TaxRateResponse GetSpecificTaxByAddress (string taxRateTypeId, string address, string purchaseAmount)
 
 Get Tax By Address
 
 This service calculates and returns taxes applicable at a specific address. Address, purchase amount and supported tax rate type are inputs to the service.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -444,27 +536,28 @@ namespace Example
 {
     public class GetSpecificTaxByAddressExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LocalTaxServiceApi();
-            var taxRateTypeId = taxRateTypeId_example;  // string | The tax rate id.
+            var apiInstance = new LocalTaxServiceApi(Configuration.Default);
+            var taxRateTypeId = taxRateTypeId_example;  // string | The tax rate id
             var address = address_example;  // string | The address to be searched.
-            var purchaseAmount = purchaseAmount_example;  // string | The amount on which tax to be calculated.
+            var purchaseAmount = purchaseAmount_example;  // string | The amount on which tax to be calculated
 
             try
             {
                 // Get Tax By Address
-                TaxResponse result = apiInstance.GetSpecificTaxByAddress(taxRateTypeId, address, purchaseAmount);
+                TaxRateResponse result = apiInstance.GetSpecificTaxByAddress(taxRateTypeId, address, purchaseAmount);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling LocalTaxServiceApi.GetSpecificTaxByAddress: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -473,15 +566,16 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **taxRateTypeId** | **string**| The tax rate id. | 
+ **taxRateTypeId** | **string**| The tax rate id | 
  **address** | **string**| The address to be searched. | 
- **purchaseAmount** | **string**| The amount on which tax to be calculated. | 
+ **purchaseAmount** | **string**| The amount on which tax to be calculated | 
 
 ### Return type
 
-[**TaxResponse**](TaxResponse.md)
+[**TaxRateResponse**](TaxRateResponse.md)
 
 ### Authorization
 
@@ -489,22 +583,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getspecifictaxbylocation"></a>
-# **GetSpecificTaxByLocation**
-> TaxResponse GetSpecificTaxByLocation (string taxRateTypeId, string latitude, string longitude, string purchaseAmount)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSpecificTaxByLocation
+
+> TaxRateResponse GetSpecificTaxByLocation (string taxRateTypeId, string latitude, string longitude, string purchaseAmount)
 
 Get Tax By Location
 
 This service calculates and returns tax applicable at a specific location. Longitude, latitude, purchase amount and supported tax rate type are inputs to the service.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -514,28 +621,29 @@ namespace Example
 {
     public class GetSpecificTaxByLocationExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LocalTaxServiceApi();
-            var taxRateTypeId = taxRateTypeId_example;  // string | The tax rate id.
-            var latitude = latitude_example;  // string | Latitude of the location.
-            var longitude = longitude_example;  // string | Longitude of the location.
-            var purchaseAmount = purchaseAmount_example;  // string | The amount on which tax to be calculated.
+            var apiInstance = new LocalTaxServiceApi(Configuration.Default);
+            var taxRateTypeId = taxRateTypeId_example;  // string | The tax rate id
+            var latitude = latitude_example;  // string | Latitude of the location
+            var longitude = longitude_example;  // string | Longitude of the location
+            var purchaseAmount = purchaseAmount_example;  // string | The amount on which tax to be calculated
 
             try
             {
                 // Get Tax By Location
-                TaxResponse result = apiInstance.GetSpecificTaxByLocation(taxRateTypeId, latitude, longitude, purchaseAmount);
+                TaxRateResponse result = apiInstance.GetSpecificTaxByLocation(taxRateTypeId, latitude, longitude, purchaseAmount);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling LocalTaxServiceApi.GetSpecificTaxByLocation: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -544,16 +652,17 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **taxRateTypeId** | **string**| The tax rate id. | 
- **latitude** | **string**| Latitude of the location. | 
- **longitude** | **string**| Longitude of the location. | 
- **purchaseAmount** | **string**| The amount on which tax to be calculated. | 
+ **taxRateTypeId** | **string**| The tax rate id | 
+ **latitude** | **string**| Latitude of the location | 
+ **longitude** | **string**| Longitude of the location | 
+ **purchaseAmount** | **string**| The amount on which tax to be calculated | 
 
 ### Return type
 
-[**TaxResponse**](TaxResponse.md)
+[**TaxRateResponse**](TaxRateResponse.md)
 
 ### Authorization
 
@@ -561,13 +670,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getspecifictaxratebyaddress"></a>
-# **GetSpecificTaxRateByAddress**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSpecificTaxRateByAddress
+
 > TaxRateResponse GetSpecificTaxRateByAddress (string taxRateTypeId, string address)
 
 Get Taxrate By Address
@@ -575,8 +696,9 @@ Get Taxrate By Address
 Retrieves tax rates applicable to a specific address. This service accepts address and supported tax rate type as inputs to retrieve applicable tax rates.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -586,15 +708,14 @@ namespace Example
 {
     public class GetSpecificTaxRateByAddressExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LocalTaxServiceApi();
-            var taxRateTypeId = taxRateTypeId_example;  // string | The tax rate id.
+            var apiInstance = new LocalTaxServiceApi(Configuration.Default);
+            var taxRateTypeId = taxRateTypeId_example;  // string | The tax rate id
             var address = address_example;  // string | The address to be searched.
 
             try
@@ -603,9 +724,11 @@ namespace Example
                 TaxRateResponse result = apiInstance.GetSpecificTaxRateByAddress(taxRateTypeId, address);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling LocalTaxServiceApi.GetSpecificTaxRateByAddress: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -614,9 +737,10 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **taxRateTypeId** | **string**| The tax rate id. | 
+ **taxRateTypeId** | **string**| The tax rate id | 
  **address** | **string**| The address to be searched. | 
 
 ### Return type
@@ -629,13 +753,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getspecifictaxratebylocation"></a>
-# **GetSpecificTaxRateByLocation**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSpecificTaxRateByLocation
+
 > TaxRateResponse GetSpecificTaxRateByLocation (string taxRateTypeId, string latitude, string longitude)
 
 Get Taxrate By Location
@@ -643,8 +779,9 @@ Get Taxrate By Location
 Retrieves tax rates applicable to a specific location. This service accepts longitude, latitude and supported tax rate type as inputs to retrieve applicable tax rates.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -654,17 +791,16 @@ namespace Example
 {
     public class GetSpecificTaxRateByLocationExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new LocalTaxServiceApi();
-            var taxRateTypeId = taxRateTypeId_example;  // string | The tax rate id.
-            var latitude = latitude_example;  // string | Latitude of the location.
-            var longitude = longitude_example;  // string | Longitude of the location.
+            var apiInstance = new LocalTaxServiceApi(Configuration.Default);
+            var taxRateTypeId = taxRateTypeId_example;  // string | The tax rate id
+            var latitude = latitude_example;  // string | Latitude of the location
+            var longitude = longitude_example;  // string | Longitude of the location
 
             try
             {
@@ -672,9 +808,11 @@ namespace Example
                 TaxRateResponse result = apiInstance.GetSpecificTaxRateByLocation(taxRateTypeId, latitude, longitude);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling LocalTaxServiceApi.GetSpecificTaxRateByLocation: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -683,11 +821,12 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **taxRateTypeId** | **string**| The tax rate id. | 
- **latitude** | **string**| Latitude of the location. | 
- **longitude** | **string**| Longitude of the location. | 
+ **taxRateTypeId** | **string**| The tax rate id | 
+ **latitude** | **string**| Latitude of the location | 
+ **longitude** | **string**| Longitude of the location | 
 
 ### Return type
 
@@ -699,8 +838,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 

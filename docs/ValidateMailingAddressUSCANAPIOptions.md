@@ -1,4 +1,6 @@
+
 # com.precisely.apis.Model.ValidateMailingAddressUSCANAPIOptions
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -49,5 +51,7 @@ Name | Type | Description | Notes
 **CanOutputCityAlias** | **string** | Specifies whether or not to return the city alias when the alias is in the input address. | [optional] [default to "N"]
 **OutputShortCityName** | **string** | Specifies how to format city names that have short city name or non-mailing city name alternatives. | [optional] [default to "N"]
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

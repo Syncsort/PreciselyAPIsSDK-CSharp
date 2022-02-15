@@ -1,4 +1,6 @@
+
 # com.precisely.apis.Model.SpeedLimit
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -11,7 +13,9 @@ Name | Type | Description | Notes
 **OffPeakAvgSpeed** | **string** |  | [optional] 
 **NightAvgSpeed** | **string** |  | [optional] 
 **WeekAvgSpeed** | **string** |  | [optional] 
-**Road** | [**SpeedRoad**](SpeedRoad.md) |  | [optional] 
+**Road** | [**Road**](Road.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

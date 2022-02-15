@@ -1,9 +1,11 @@
+
 # com.precisely.apis.Model.Candidate
+
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PrecisionLevel** | **int?** |  | [optional] 
+**PrecisionLevel** | **int** |  | [optional] 
 **FormattedStreetAddress** | **string** |  | [optional] 
 **FormattedLocationAddress** | **string** |  | [optional] 
 **Identifier** | **string** |  | [optional] 
@@ -14,5 +16,7 @@ Name | Type | Description | Notes
 **Address** | [**GeocodeAddress**](GeocodeAddress.md) |  | [optional] 
 **Ranges** | [**List&lt;CandidateRange&gt;**](CandidateRange.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

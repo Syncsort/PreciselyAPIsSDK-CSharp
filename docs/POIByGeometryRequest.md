@@ -1,4 +1,6 @@
+
 # com.precisely.apis.Model.POIByGeometryRequest
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -12,8 +14,10 @@ Name | Type | Description | Notes
 **Page** | **string** |  | [optional] 
 **MatchMode** | **string** |  | [optional] 
 **SpecificMatchOn** | **string** |  | [optional] 
-**Geometry** | [**CommonGeometry**](CommonGeometry.md) |  | [optional] 
+**Geometry** | [**Geometry**](Geometry.md) |  | [optional] 
 **GeometryAsText** | **string** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

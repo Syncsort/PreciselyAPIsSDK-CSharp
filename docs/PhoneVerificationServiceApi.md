@@ -7,8 +7,9 @@ Method | HTTP request | Description
 [**PhoneVerification**](PhoneVerificationServiceApi.md#phoneverification) | **GET** /phoneverification/v1/phoneverification | Phone verification.
 
 
-<a name="phoneverification"></a>
-# **PhoneVerification**
+
+## PhoneVerification
+
 > PhoneVerification PhoneVerification (string phoneNumber, string includeNetworkInfo = null)
 
 Phone verification.
@@ -16,8 +17,9 @@ Phone verification.
 This service accepts a phone number as input and returns details distinguishing landline and wireless numbers and also checks if a wireless number can be located.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -27,14 +29,13 @@ namespace Example
 {
     public class PhoneVerificationExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PhoneVerificationServiceApi();
+            var apiInstance = new PhoneVerificationServiceApi(Configuration.Default);
             var phoneNumber = phoneNumber_example;  // string | E.164 formatted phone number. Accepts digits only. Country Code (1) optional for USA & CAN.
             var includeNetworkInfo = includeNetworkInfo_example;  // string | Y or N (default is Y) – if it is N, then network/carrier details will not be added in the response. (optional) 
 
@@ -44,9 +45,11 @@ namespace Example
                 PhoneVerification result = apiInstance.PhoneVerification(phoneNumber, includeNetworkInfo);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling PhoneVerificationServiceApi.PhoneVerification: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -54,6 +57,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -70,8 +74,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 

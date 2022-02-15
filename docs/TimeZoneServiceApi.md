@@ -4,23 +4,25 @@ All URIs are relative to *https://api.precisely.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetBatchTimezoneByAddress**](TimeZoneServiceApi.md#getbatchtimezonebyaddress) | **POST** /timezone/v1/timezone/byaddress | Timezone Batch by Address
-[**GetBatchTimezoneByLocation**](TimeZoneServiceApi.md#getbatchtimezonebylocation) | **POST** /timezone/v1/timezone/bylocation | Timezone Batch by Location
+[**GetBatchTimezoneByLocation**](TimeZoneServiceApi.md#getbatchtimezonebylocation) | **POST** /timezone/v1/timezone/bylocation | Timezone Batch by Location.
 [**GetTimezoneByAddress**](TimeZoneServiceApi.md#gettimezonebyaddress) | **GET** /timezone/v1/timezone/byaddress | Timezone By Address.
+[**GetTimezoneByAddressBatch**](TimeZoneServiceApi.md#gettimezonebyaddressbatch) | **POST** /timezone/v1/timezone/byaddress | Timezone Batch by Address.
 [**GetTimezoneByLocation**](TimeZoneServiceApi.md#gettimezonebylocation) | **GET** /timezone/v1/timezone/bylocation | Timezone By Location.
 
 
-<a name="getbatchtimezonebyaddress"></a>
-# **GetBatchTimezoneByAddress**
-> TimezoneResponse GetBatchTimezoneByAddress (TimezoneAddressRequest body = null)
 
-Timezone Batch by Address
+## GetBatchTimezoneByLocation
 
-Identifies and retrieves the local time of any location in the world for a given address and time. The input and retrieved time format is in milliseconds. 
+> TimezoneResponseList GetBatchTimezoneByLocation (TimezoneLocationRequest timezoneLocationRequest)
+
+Timezone Batch by Location.
+
+Identifies and retrieves the local time of any location in the world for a given latitude, longitude and time. The input and retrieved time format is in milliseconds.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -28,27 +30,28 @@ using com.precisely.apis.Model;
 
 namespace Example
 {
-    public class GetBatchTimezoneByAddressExample
+    public class GetBatchTimezoneByLocationExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new TimeZoneServiceApi();
-            var body = new TimezoneAddressRequest(); // TimezoneAddressRequest |  (optional) 
+            var apiInstance = new TimeZoneServiceApi(Configuration.Default);
+            var timezoneLocationRequest = new TimezoneLocationRequest(); // TimezoneLocationRequest | 
 
             try
             {
-                // Timezone Batch by Address
-                TimezoneResponse result = apiInstance.GetBatchTimezoneByAddress(body);
+                // Timezone Batch by Location.
+                TimezoneResponseList result = apiInstance.GetBatchTimezoneByLocation(timezoneLocationRequest);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling TimeZoneServiceApi.GetBatchTimezoneByAddress: " + e.Message );
+                Debug.Print("Exception when calling TimeZoneServiceApi.GetBatchTimezoneByLocation: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -57,9 +60,97 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**TimezoneAddressRequest**](TimezoneAddressRequest.md)|  | [optional] 
+ **timezoneLocationRequest** | [**TimezoneLocationRequest**](TimezoneLocationRequest.md)|  | 
+
+### Return type
+
+[**TimezoneResponseList**](TimezoneResponseList.md)
+
+### Authorization
+
+[oAuth2Password](../README.md#oAuth2Password)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, application/xml
+- **Accept**: application/json, application/xml
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetTimezoneByAddress
+
+> TimezoneResponse GetTimezoneByAddress (string timestamp, string address, string matchMode = null, string country = null)
+
+Timezone By Address.
+
+Identifies and retrieves the local time of any location in the world for a given address and time. The input and retrieved time format is in milliseconds.
+
+### Example
+
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using com.precisely.apis.Api;
+using com.precisely.apis.Client;
+using com.precisely.apis.Model;
+
+namespace Example
+{
+    public class GetTimezoneByAddressExample
+    {
+        public static void Main()
+        {
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new TimeZoneServiceApi(Configuration.Default);
+            var timestamp = timestamp_example;  // string | Timestamp in miliseconds.
+            var address = address_example;  // string | The address to be searched.
+            var matchMode = Relaxed;  // string | Match modes determine the leniency used to make a match between the input address and the reference data (Default is relaxed) (optional) 
+            var country = USA;  // string | Country ISO code (Default is USA) (optional) 
+
+            try
+            {
+                // Timezone By Address.
+                TimezoneResponse result = apiInstance.GetTimezoneByAddress(timestamp, address, matchMode, country);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException e)
+            {
+                Debug.Print("Exception when calling TimeZoneServiceApi.GetTimezoneByAddress: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **timestamp** | **string**| Timestamp in miliseconds. | 
+ **address** | **string**| The address to be searched. | 
+ **matchMode** | **string**| Match modes determine the leniency used to make a match between the input address and the reference data (Default is relaxed) | [optional] 
+ **country** | **string**| Country ISO code (Default is USA) | [optional] 
 
 ### Return type
 
@@ -71,88 +162,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getbatchtimezonebylocation"></a>
-# **GetBatchTimezoneByLocation**
-> TimezoneLocationResponse GetBatchTimezoneByLocation (TimezoneLocationRequest body = null)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
 
-Timezone Batch by Location
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-Identifies and retrieves the local time of any location in the world for a given latitude, longitude and time. The input and retrieved time format is in milliseconds. 
 
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using com.precisely.apis.Api;
-using com.precisely.apis.Client;
-using com.precisely.apis.Model;
+## GetTimezoneByAddressBatch
 
-namespace Example
-{
-    public class GetBatchTimezoneByLocationExample
-    {
-        public void main()
-        {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+> TimezoneResponseList GetTimezoneByAddressBatch (TimezoneAddressRequest timezoneAddressRequest)
 
-            var apiInstance = new TimeZoneServiceApi();
-            var body = new TimezoneLocationRequest(); // TimezoneLocationRequest |  (optional) 
-
-            try
-            {
-                // Timezone Batch by Location
-                TimezoneLocationResponse result = apiInstance.GetBatchTimezoneByLocation(body);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling TimeZoneServiceApi.GetBatchTimezoneByLocation: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**TimezoneLocationRequest**](TimezoneLocationRequest.md)|  | [optional] 
-
-### Return type
-
-[**TimezoneLocationResponse**](TimezoneLocationResponse.md)
-
-### Authorization
-
-[oAuth2Password](../README.md#oAuth2Password)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="gettimezonebyaddress"></a>
-# **GetTimezoneByAddress**
-> Timezone GetTimezoneByAddress (string timestamp, string address, string matchMode = null, string country = null)
-
-Timezone By Address.
+Timezone Batch by Address.
 
 Identifies and retrieves the local time of any location in the world for a given address and time. The input and retrieved time format is in milliseconds.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -160,30 +198,28 @@ using com.precisely.apis.Model;
 
 namespace Example
 {
-    public class GetTimezoneByAddressExample
+    public class GetTimezoneByAddressBatchExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new TimeZoneServiceApi();
-            var timestamp = timestamp_example;  // string | Timestamp in miliseconds.
-            var address = address_example;  // string | The address to be searched.
-            var matchMode = matchMode_example;  // string | Match modes determine the leniency used to make a match between the input address and the reference data. (optional)  (default to Relaxed)
-            var country = country_example;  // string | Country ISO code. (optional)  (default to USA)
+            var apiInstance = new TimeZoneServiceApi(Configuration.Default);
+            var timezoneAddressRequest = new TimezoneAddressRequest(); // TimezoneAddressRequest | 
 
             try
             {
-                // Timezone By Address.
-                Timezone result = apiInstance.GetTimezoneByAddress(timestamp, address, matchMode, country);
+                // Timezone Batch by Address.
+                TimezoneResponseList result = apiInstance.GetTimezoneByAddressBatch(timezoneAddressRequest);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling TimeZoneServiceApi.GetTimezoneByAddress: " + e.Message );
+                Debug.Print("Exception when calling TimeZoneServiceApi.GetTimezoneByAddressBatch: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -192,16 +228,14 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **timestamp** | **string**| Timestamp in miliseconds. | 
- **address** | **string**| The address to be searched. | 
- **matchMode** | **string**| Match modes determine the leniency used to make a match between the input address and the reference data. | [optional] [default to Relaxed]
- **country** | **string**| Country ISO code. | [optional] [default to USA]
+ **timezoneAddressRequest** | [**TimezoneAddressRequest**](TimezoneAddressRequest.md)|  | 
 
 ### Return type
 
-[**Timezone**](Timezone.md)
+[**TimezoneResponseList**](TimezoneResponseList.md)
 
 ### Authorization
 
@@ -209,22 +243,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/xml, application/json
+- **Content-Type**: application/json, application/xml
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="gettimezonebylocation"></a>
-# **GetTimezoneByLocation**
-> TimezoneLocation GetTimezoneByLocation (string timestamp, string longitude, string latitude)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetTimezoneByLocation
+
+> TimezoneResponse GetTimezoneByLocation (string timestamp, string longitude, string latitude)
 
 Timezone By Location.
 
 Identifies and retrieves the local time of any location in the world for a given latitude, longitude and time. The input and retrieved time format is in milliseconds.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -234,14 +281,13 @@ namespace Example
 {
     public class GetTimezoneByLocationExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new TimeZoneServiceApi();
+            var apiInstance = new TimeZoneServiceApi(Configuration.Default);
             var timestamp = timestamp_example;  // string | Timestamp in miliseconds.
             var longitude = longitude_example;  // string | Longitude of the location.
             var latitude = latitude_example;  // string | Latitude of the location.
@@ -249,12 +295,14 @@ namespace Example
             try
             {
                 // Timezone By Location.
-                TimezoneLocation result = apiInstance.GetTimezoneByLocation(timestamp, longitude, latitude);
+                TimezoneResponse result = apiInstance.GetTimezoneByLocation(timestamp, longitude, latitude);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling TimeZoneServiceApi.GetTimezoneByLocation: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -262,6 +310,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -271,7 +320,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TimezoneLocation**](TimezoneLocation.md)
+[**TimezoneResponse**](TimezoneResponse.md)
 
 ### Authorization
 
@@ -279,8 +328,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/xml, application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 

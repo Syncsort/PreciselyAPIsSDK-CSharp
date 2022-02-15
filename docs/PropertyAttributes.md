@@ -1,4 +1,6 @@
+
 # com.precisely.apis.Model.PropertyAttributes
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -13,7 +15,7 @@ Name | Type | Description | Notes
 **Construction** | [**Construction**](Construction.md) |  | [optional] 
 **RoofCoverType** | [**RoofCoverType**](RoofCoverType.md) |  | [optional] 
 **Subdivision** | **string** |  | [optional] 
-**Geometry** | [**Geometry**](Geometry.md) |  | [optional] 
+**Geometry** | [**PropertyGeometry**](PropertyGeometry.md) |  | [optional] 
 **BuiltYear** | **string** |  | [optional] 
 **Bedrooms** | **string** |  | [optional] 
 **Baths** | **string** |  | [optional] 
@@ -59,5 +61,7 @@ Name | Type | Description | Notes
 **BuildgStyle** | [**BuildgStyle**](BuildgStyle.md) |  | [optional] 
 **BasementSqFt** | **string** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

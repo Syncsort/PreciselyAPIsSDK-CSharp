@@ -1,8 +1,25 @@
+
 # com.precisely.apis.Model.MatchedAddress
+
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ObjectId** | **string** |  | [optional] 
+**DisplayName** | **string** |  | [optional] 
+**StreetSide** | **string** |  | [optional] 
+**BusinessName** | **string** |  | [optional] 
+**AddressLine1** | **string** |  | [optional] 
+**AddressLine2** | **string** |  | [optional] 
+**AddressLine3** | **string** |  | [optional] 
+**City** | **string** |  | [optional] 
+**StateProvince** | **string** |  | [optional] 
+**County** | **string** |  | [optional] 
+**PostalCode** | **string** |  | [optional] 
+**Latitude** | **string** |  | [optional] 
+**Longitude** | **string** |  | [optional] 
+**Status** | **string** |  | [optional] 
+**UrbanizationName** | **string** |  | [optional] 
 **FormattedAddress** | **string** |  | [optional] 
 **MainAddressLine** | **string** |  | [optional] 
 **AddressLastLine** | **string** |  | [optional] 
@@ -19,5 +36,7 @@ Name | Type | Description | Notes
 **UnitType** | **string** |  | [optional] 
 **UnitValue** | **string** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

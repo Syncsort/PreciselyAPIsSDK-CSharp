@@ -10,17 +10,19 @@ Method | HTTP request | Description
 [**GetPropertyAttributesByAddressBatch**](PropertyInformationServiceApi.md#getpropertyattributesbyaddressbatch) | **POST** /property/v2/attributes/byaddress | PropertyV2 Attributes By Address Batch.
 
 
-<a name="getparcelboundarybyaddress"></a>
-# **GetParcelBoundaryByAddress**
-> ParcelBoundary GetParcelBoundaryByAddress (string address, string accept = null)
+
+## GetParcelBoundaryByAddress
+
+> ParcelBoundary GetParcelBoundaryByAddress (string address)
 
 Get Parcel Boundary By Address
 
 Accepts address as input and returns property parcel boundary around that address.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -30,22 +32,26 @@ namespace Example
 {
     public class GetParcelBoundaryByAddressExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            var apiInstance = new PropertyInformationServiceApi();
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new PropertyInformationServiceApi(Configuration.Default);
             var address = address_example;  // string | free form address text
-            var accept = accept_example;  // string |  (optional) 
 
             try
             {
                 // Get Parcel Boundary By Address
-                ParcelBoundary result = apiInstance.GetParcelBoundaryByAddress(address, accept);
+                ParcelBoundary result = apiInstance.GetParcelBoundaryByAddress(address);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling PropertyInformationServiceApi.GetParcelBoundaryByAddress: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -54,10 +60,10 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **address** | **string**| free form address text | 
- **accept** | **string**|  | [optional] 
 
 ### Return type
 
@@ -65,26 +71,39 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oAuth2Password](../README.md#oAuth2Password)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getparcelboundarybylocation"></a>
-# **GetParcelBoundaryByLocation**
-> ParcelBoundary GetParcelBoundaryByLocation (string longitude, string latitude, string accept = null)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetParcelBoundaryByLocation
+
+> ParcelBoundary GetParcelBoundaryByLocation (string longitude, string latitude)
 
 Get Parcel Boundary By Location
 
 Accepts latitude/longitude as input and returns property parcel boundary around that location.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -94,23 +113,27 @@ namespace Example
 {
     public class GetParcelBoundaryByLocationExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            var apiInstance = new PropertyInformationServiceApi();
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new PropertyInformationServiceApi(Configuration.Default);
             var longitude = longitude_example;  // string | Longitude of Location
             var latitude = latitude_example;  // string | Latitude of Location
-            var accept = accept_example;  // string |  (optional) 
 
             try
             {
                 // Get Parcel Boundary By Location
-                ParcelBoundary result = apiInstance.GetParcelBoundaryByLocation(longitude, latitude, accept);
+                ParcelBoundary result = apiInstance.GetParcelBoundaryByLocation(longitude, latitude);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling PropertyInformationServiceApi.GetParcelBoundaryByLocation: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -119,11 +142,11 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **longitude** | **string**| Longitude of Location | 
  **latitude** | **string**| Latitude of Location | 
- **accept** | **string**|  | [optional] 
 
 ### Return type
 
@@ -131,17 +154,29 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[oAuth2Password](../README.md#oAuth2Password)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpropertyattributesbyaddress"></a>
-# **GetPropertyAttributesByAddress**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPropertyAttributesByAddress
+
 > PropertyInfoResponse GetPropertyAttributesByAddress (string address = null, string attributes = null)
 
 PropertyV2 Attributes By Address.
@@ -149,8 +184,9 @@ PropertyV2 Attributes By Address.
 GetPropertyAttributesbyAddress Endpoint will take address as an input and will return key property attributes in response. Optionally user will have the option to filter the attributes and will pay for only returned attributes.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -160,14 +196,13 @@ namespace Example
 {
     public class GetPropertyAttributesByAddressExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PropertyInformationServiceApi();
+            var apiInstance = new PropertyInformationServiceApi(Configuration.Default);
             var address = address_example;  // string | free form address text (optional) 
             var attributes = attributes_example;  // string | Case-insensitive comma separated values of property attributes. Response will contain only the input attributes. (optional) 
 
@@ -177,9 +212,11 @@ namespace Example
                 PropertyInfoResponse result = apiInstance.GetPropertyAttributesByAddress(address, attributes);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling PropertyInformationServiceApi.GetPropertyAttributesByAddress: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -187,6 +224,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -203,22 +241,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/json, application/xml
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpropertyattributesbyaddressbatch"></a>
-# **GetPropertyAttributesByAddressBatch**
-> PropertyInfoResponses GetPropertyAttributesByAddressBatch (PropertyInfoAddressRequest body = null)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPropertyAttributesByAddressBatch
+
+> PropertyInfoResponses GetPropertyAttributesByAddressBatch (PropertyInfoAddressRequest propertyInfoAddressRequest)
 
 PropertyV2 Attributes By Address Batch.
 
 GetPropertyAttributesbyAddressBatch Endpoint will take the list of addresses as an input and will return key property attributes for the given addresses in response. Optionally user will have the option to filter the attributes and will pay for only returned attributes.
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using com.precisely.apis.Api;
 using com.precisely.apis.Client;
@@ -228,25 +279,26 @@ namespace Example
 {
     public class GetPropertyAttributesByAddressBatchExample
     {
-        public void main()
+        public static void Main()
         {
-            
-            // Configure OAuth2 API_KEY and SECRET for authorization: oAuth2Password
-            Configuration.Default.OAuthApiKey = "API_KEY";
-            Configuration.Default.OAuthSecret = "SECRET";
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PropertyInformationServiceApi();
-            var body = new PropertyInfoAddressRequest(); // PropertyInfoAddressRequest |  (optional) 
+            var apiInstance = new PropertyInformationServiceApi(Configuration.Default);
+            var propertyInfoAddressRequest = new PropertyInfoAddressRequest(); // PropertyInfoAddressRequest | 
 
             try
             {
                 // PropertyV2 Attributes By Address Batch.
-                PropertyInfoResponses result = apiInstance.GetPropertyAttributesByAddressBatch(body);
+                PropertyInfoResponses result = apiInstance.GetPropertyAttributesByAddressBatch(propertyInfoAddressRequest);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling PropertyInformationServiceApi.GetPropertyAttributesByAddressBatch: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -255,9 +307,10 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**PropertyInfoAddressRequest**](PropertyInfoAddressRequest.md)|  | [optional] 
+ **propertyInfoAddressRequest** | [**PropertyInfoAddressRequest**](PropertyInfoAddressRequest.md)|  | 
 
 ### Return type
 
@@ -269,8 +322,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml
- - **Accept**: application/xml, application/json
+- **Content-Type**: application/json
+- **Accept**: application/json, application/xml
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 

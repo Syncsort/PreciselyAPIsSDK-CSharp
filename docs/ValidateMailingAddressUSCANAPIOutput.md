@@ -1,9 +1,11 @@
+
 # com.precisely.apis.Model.ValidateMailingAddressUSCANAPIOutput
+
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UserFields** | [**List&lt;ValidateMailingAddressInputRowUserFields&gt;**](ValidateMailingAddressInputRowUserFields.md) | These fields are returned, unmodified, in the user_fields section of the response. | [optional] 
+**UserFields** | [**List&lt;GetPostalCodesAPIOutputUserFields&gt;**](GetPostalCodesAPIOutputUserFields.md) | These fields are returned, unmodified, in the user_fields section of the response. | [optional] 
 **Status** | **string** | Reports the success or failure of the match attempt. | [optional] 
 **StatusCode** | **string** | Reason for failure, if there is one. | [optional] 
 **StatusDescription** | **string** | Specifies the description of the problem, if there is one. | [optional] 
@@ -113,5 +115,7 @@ Name | Type | Description | Notes
 **DPVNoStat** | **string** | Specifies whether the building is a no stat building and therefore unable to receive mail. | [optional] 
 **DPVVacant** | **string** | Specifies whether the building is vacant, unoccupied for 90 days. | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

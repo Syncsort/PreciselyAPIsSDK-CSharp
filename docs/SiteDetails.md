@@ -1,4 +1,6 @@
+
 # com.precisely.apis.Model.SiteDetails
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -7,7 +9,9 @@ Name | Type | Description | Notes
 **Fax** | **string** |  | [optional] 
 **ContactName** | **string** |  | [optional] 
 **Email** | **string** |  | [optional] 
-**Address** | [**MatchedAddress**](MatchedAddress.md) |  | [optional] 
+**Address** | [**AHJmailingAddress**](AHJmailingAddress.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 
