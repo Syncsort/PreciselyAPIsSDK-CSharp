@@ -4,7 +4,7 @@ Precisely APIs
 
 Enhance & enrich your data, applications, business processes, and workflows with rich location, information, and identify APIs.
 
-The version of the OpenAPI document: 11.9.3
+The version of the OpenAPI document: 11.9.2
 
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -81,7 +81,7 @@ The version of the OpenAPI document: 11.9.3
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
       <ProjectReference Include="..\com.precisely.apis\com.precisely.apis.csproj">
-          <Project>{2C31F1D2-D230-4E0F-A063-07AAF7875989}</Project>
+          <Project>{CE2F8412-9856-49A3-9D13-3646373351AC}</Project>
           <Name>com.precisely.apis</Name>
       </ProjectReference>
   </ItemGroup>
