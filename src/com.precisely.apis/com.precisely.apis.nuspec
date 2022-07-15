@@ -3,7 +3,7 @@
     <metadata>
         <!-- The identifier that must be unique within the hosting gallery -->
         <id>$id$</id>
-        <title>PreciselyAPIsSDKCSharp-11.9.3</title>
+        <title>PreciselyAPIsSDKCSharp-11.9.4</title>
 
         <!-- The package version number that is used when resolving dependencies -->
         <version>$version$</version>
