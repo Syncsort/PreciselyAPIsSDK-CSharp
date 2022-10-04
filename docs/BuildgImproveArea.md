@@ -1,5 +1,5 @@
 
-# com.precisely.apis.Model.BuildgImprovArea
+# com.precisely.apis.Model.BuildgImproveArea
 
 ## Properties
 
