@@ -6,7 +6,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PhoneNumber** | **string** |  | [optional] 
-**Locatable** | **string** |  | [optional] 
 **Network** | [**DeviceStatusNetwork**](DeviceStatusNetwork.md) |  | [optional] 
 **PrivacyConsentRequired** | **string** |  | [optional] 
 

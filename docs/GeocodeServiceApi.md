@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## Geocode
 
-> GeocodeServiceResponse Geocode (string datapackBundle, string country = null, string mainAddress = null, string matchMode = null, string fallbackGeo = null, string fallbackPostal = null, string maxCands = null, string streetOffset = null, string streetOffsetUnits = null, string cornerOffset = null, string cornerOffsetUnits = null, string removeAccentMarks = null)
+> GeocodeServiceResponse Geocode (string datapackBundle, string country = null, string mainAddress = null, string matchMode = null, string fallbackGeo = null, string fallbackPostal = null, string maxCands = null, string streetOffset = null, string streetOffsetUnits = null, string cornerOffset = null, string cornerOffsetUnits = null, string removeAccentMarks = null, string findDPV = null)
 
 Get Forward Geocode(Basic/Premium/Advanced)
 
@@ -55,11 +55,12 @@ namespace Example
             var cornerOffset = cornerOffset_example;  // string | Specifies the distance to offset the street end points in street-level matching. (optional)  (default to "7")
             var cornerOffsetUnits = cornerOffsetUnits_example;  // string | Specifies the unit of measurement for the corner offset. (optional)  (default to METERS)
             var removeAccentMarks = removeAccentMarks_example;  // string | Specifies whether to Suppress accents and other diacritical marks. (optional)  (default to "false")
+            var findDPV = findDPV_example;  // string | Specifies if Delivery Point Validation is required. Note: This parameter is only applicable for USA addresses. (optional)  (default to "false")
 
             try
             {
                 // Get Forward Geocode(Basic/Premium/Advanced)
-                GeocodeServiceResponse result = apiInstance.Geocode(datapackBundle, country, mainAddress, matchMode, fallbackGeo, fallbackPostal, maxCands, streetOffset, streetOffsetUnits, cornerOffset, cornerOffsetUnits, removeAccentMarks);
+                GeocodeServiceResponse result = apiInstance.Geocode(datapackBundle, country, mainAddress, matchMode, fallbackGeo, fallbackPostal, maxCands, streetOffset, streetOffsetUnits, cornerOffset, cornerOffsetUnits, removeAccentMarks, findDPV);
                 Debug.WriteLine(result);
             }
             catch (ApiException e)
@@ -90,6 +91,7 @@ Name | Type | Description  | Notes
  **cornerOffset** | **string**| Specifies the distance to offset the street end points in street-level matching. | [optional] [default to &quot;7&quot;]
  **cornerOffsetUnits** | **string**| Specifies the unit of measurement for the corner offset. | [optional] [default to METERS]
  **removeAccentMarks** | **string**| Specifies whether to Suppress accents and other diacritical marks. | [optional] [default to &quot;false&quot;]
+ **findDPV** | **string**| Specifies if Delivery Point Validation is required. Note: This parameter is only applicable for USA addresses. | [optional] [default to &quot;false&quot;]
 
 ### Return type
 
