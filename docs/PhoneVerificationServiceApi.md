@@ -4,17 +4,17 @@ All URIs are relative to *https://api.precisely.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PhoneVerification**](PhoneVerificationServiceApi.md#phoneverification) | **GET** /phoneverification/v1/phoneverification | Phone verification.
+[**Validatephonenumber**](PhoneVerificationServiceApi.md#validatephonenumber) | **POST** /phoneverification/v2/validatephonenumber/results.json | Phone verification.
 
 
 
-## PhoneVerification
+## Validatephonenumber
 
-> PhoneVerification PhoneVerification (string phoneNumber, string includeNetworkInfo = null)
+> PhoneVerification Validatephonenumber (ValidatePhoneNumberAPIRequest validatePhoneNumberAPIRequest)
 
 Phone verification.
 
-This service accepts a phone number as input and returns details distinguishing landline and wireless numbers and also checks if a wireless number can be located.
+This service accepts a phone number as input and returns details distinguishing landline and wireless numbers.
 
 ### Example
 
@@ -27,7 +27,7 @@ using com.precisely.apis.Model;
 
 namespace Example
 {
-    public class PhoneVerificationExample
+    public class ValidatephonenumberExample
     {
         public static void Main()
         {
@@ -36,18 +36,17 @@ namespace Example
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new PhoneVerificationServiceApi(Configuration.Default);
-            var phoneNumber = phoneNumber_example;  // string | E.164 formatted phone number. Accepts digits only. Country Code (1) optional for USA & CAN.
-            var includeNetworkInfo = includeNetworkInfo_example;  // string | Y or N (default is Y) – if it is N, then network/carrier details will not be added in the response. (optional) 
+            var validatePhoneNumberAPIRequest = new ValidatePhoneNumberAPIRequest(); // ValidatePhoneNumberAPIRequest | 
 
             try
             {
                 // Phone verification.
-                PhoneVerification result = apiInstance.PhoneVerification(phoneNumber, includeNetworkInfo);
+                PhoneVerification result = apiInstance.Validatephonenumber(validatePhoneNumberAPIRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException e)
             {
-                Debug.Print("Exception when calling PhoneVerificationServiceApi.PhoneVerification: " + e.Message );
+                Debug.Print("Exception when calling PhoneVerificationServiceApi.Validatephonenumber: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -61,8 +60,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **phoneNumber** | **string**| E.164 formatted phone number. Accepts digits only. Country Code (1) optional for USA &amp; CAN. | 
- **includeNetworkInfo** | **string**| Y or N (default is Y) – if it is N, then network/carrier details will not be added in the response. | [optional] 
+ **validatePhoneNumberAPIRequest** | [**ValidatePhoneNumberAPIRequest**](ValidatePhoneNumberAPIRequest.md)|  | 
 
 ### Return type
 
@@ -74,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json, application/xml
 
 
