@@ -11,6 +11,8 @@
 
 * [Address Autocomplete](https://developer.precisely.com/apis/typeahead): Address Autocomplete. Build Address Autocomplete into your websites. The Address Autocomplete API returns an autocompleted list of addresses based on the input of a partial address. Useful for any local search, checkout, shipping, or billing experiences on your website. Increase e-commerce conversion by 3-6%!
 
+* [Address Autocomplete Enterprise](https://developer.precisely.com/apis/autocomplete): Build Address Autocomplete Enterprise into your websites. The Address Autocomplete Enterprise API returns an autocompleted list of addresses based on the input of a partial address. It is useful for any local search, checkout, shipping, or billing experiences on your website.
+
 * [Maps](https://developer.precisely.com/apis/maps): Beautiful Visualization. Add your data and/or Precisely data atop beautiful maps for visualizations. Choose from three map styles - Bronze, Iron, and Steel.
 
 * [Zones](https://developer.precisely.com/apis/zones): Smart Zones. The Zones API returns geographic zones by Radius, Drive Distance, Drive Time and highly localized geofence zones with the input of Location Coordinates or Addresses. Useful for anyone wanting to create smarter geofence zones for Local Engagement and Analysis.
@@ -183,6 +185,8 @@ All URIs are relative to *https://api.precisely.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AddressAutocompleteEnterpriseServiceApi* | [**ListLocations**](docs/AddressAutocompleteEnterpriseServiceApi.md#listlocations) | **GET** /typeahead/v1/list/locations | 
+*AddressAutocompleteEnterpriseServiceApi* | [**ListSelect**](docs/AddressAutocompleteEnterpriseServiceApi.md#listselect) | **GET** /typeahead/v1/list/select | 
 *AddressAutocompleteServiceApi* | [**SearchV2**](docs/AddressAutocompleteServiceApi.md#searchv2) | **GET** /typeahead/v1/locations | Address Autocomplete Search
 *AddressVerificationServiceApi* | [**GetCityStateProvince**](docs/AddressVerificationServiceApi.md#getcitystateprovince) | **POST** /addressverification/v1/getcitystateprovince/results.json | GetCityStateProvince
 *AddressVerificationServiceApi* | [**GetPostalCodes**](docs/AddressVerificationServiceApi.md#getpostalcodes) | **POST** /addressverification/v1/getpostalcodes/results.json | GetPostalCodes
