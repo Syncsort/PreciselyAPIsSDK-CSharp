@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Dataset** | **string** |  | [optional] 
 **Match** | [**Match**](Match.md) |  | [optional] 
-**Address** | [**Address**](Address.md) |  | [optional] 
+**Address** | [**Address1**](Address1.md) |  | [optional] 
 **Poi** | [**Poi**](Poi.md) |  | [optional] 
 **Distance** | [**Distance**](Distance.md) |  | [optional] 
 **UnitTemp** | **string** |  | [optional] 
