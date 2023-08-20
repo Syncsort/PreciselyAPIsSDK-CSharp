@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**GetAHJPlusPSAPByLocation**](PSAP911ServiceApi.md#getahjpluspsapbylocation) | **GET** /911/v1/ahj-psap/bylocation | AHJ &amp; PSAP By Location
 [**GetPSAPByAddress**](PSAP911ServiceApi.md#getpsapbyaddress) | **GET** /911/v1/psap/byaddress | PSAP By Address.
 [**GetPSAPByLocation**](PSAP911ServiceApi.md#getpsapbylocation) | **GET** /911/v1/psap/bylocation | PSAP By Location.
+[**SearchByFccId**](PSAP911ServiceApi.md#searchbyfccid) | **GET** /911/v1/ahj-psap/byfccid | AHJ &amp; PSAP By Fccid
 
 
 
@@ -324,6 +325,87 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json, application/xml
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SearchByFccId
+
+> AHJPlusPSAPResponse SearchByFccId (string fccId)
+
+AHJ & PSAP By Fccid
+
+Accepts fccid as input and Returns contact details for Authorities Having Jurisdiction (AHJ) on-behalf-of local Public Safety Answering Points (PSAP). 911/PSAP accepts a location coordinate and returns PSAP contact data plus contact data for an AHJ to communicate directly with a PSAP. Details include agency name, phone number, city name, coverage, contact person's details, site details and mailing addresses for EMS, Fire, and Police PSAP contacts.
+
+### Example
+
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using com.precisely.apis.Api;
+using com.precisely.apis.Client;
+using com.precisely.apis.Model;
+
+namespace Example
+{
+    public class SearchByFccIdExample
+    {
+        public static void Main()
+        {
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new PSAP911ServiceApi(Configuration.Default);
+            var fccId = fccId_example;  // string | fccId
+
+            try
+            {
+                // AHJ & PSAP By Fccid
+                AHJPlusPSAPResponse result = apiInstance.SearchByFccId(fccId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException e)
+            {
+                Debug.Print("Exception when calling PSAP911ServiceApi.SearchByFccId: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fccId** | **string**| fccId | 
+
+### Return type
+
+[**AHJPlusPSAPResponse**](AHJPlusPSAPResponse.md)
+
+### Authorization
+
+[oAuth2Password](../README.md#oAuth2Password)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
 ### HTTP response details
