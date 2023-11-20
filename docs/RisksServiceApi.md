@@ -18,10 +18,15 @@ Method | HTTP request | Description
 [**GetEarthquakeRiskByLocation**](RisksServiceApi.md#getearthquakeriskbylocation) | **GET** /risks/v1/earthquake/bylocation | Get Earthquake Risk By Location
 [**GetEarthquakeRiskByLocationBatch**](RisksServiceApi.md#getearthquakeriskbylocationbatch) | **POST** /risks/v1/earthquake/bylocation | Post Earthquake Risk By Location
 [**GetFireHistory**](RisksServiceApi.md#getfirehistory) | **GET** /risks/v1/firehistory | Get Fire History
+[**GetFireHistoryV2**](RisksServiceApi.md#getfirehistoryv2) | **GET** /risks/v2/firehistory | Get Fire History
 [**GetFireRiskByAddress**](RisksServiceApi.md#getfireriskbyaddress) | **GET** /risks/v1/fire/byaddress | Get Fire Risk By Address
 [**GetFireRiskByAddressBatch**](RisksServiceApi.md#getfireriskbyaddressbatch) | **POST** /risks/v1/fire/byaddress | Post Fire Risk By Address
 [**GetFireRiskByLocation**](RisksServiceApi.md#getfireriskbylocation) | **GET** /risks/v1/fire/bylocation | Get Fire Risk By Location
 [**GetFireRiskByLocationBatch**](RisksServiceApi.md#getfireriskbylocationbatch) | **POST** /risks/v1/fire/bylocation | Post Fire Risk By Location
+[**GetFireRiskV2ByAddress**](RisksServiceApi.md#getfireriskv2byaddress) | **GET** /risks/v2/fire/byaddress | Get Fire Risk By Address
+[**GetFireRiskV2ByAddressBatch**](RisksServiceApi.md#getfireriskv2byaddressbatch) | **POST** /risks/v2/fire/byaddress | Post Fire Risk By Address
+[**GetFireRiskV2ByLocation**](RisksServiceApi.md#getfireriskv2bylocation) | **GET** /risks/v2/fire/bylocation | Get Fire Risk By Location
+[**GetFireRiskV2ByLocationBatch**](RisksServiceApi.md#getfireriskv2bylocationbatch) | **POST** /risks/v2/fire/bylocation | Post Fire Risk By Location
 [**GetFireStationByAddress**](RisksServiceApi.md#getfirestationbyaddress) | **GET** /risks/v1/firestation/byaddress | Get Fire Station By Address
 [**GetFireStationByLocation**](RisksServiceApi.md#getfirestationbylocation) | **GET** /risks/v1/firestation/bylocation | Get Fire Station By Location
 [**GetFloodRiskByAddress**](RisksServiceApi.md#getfloodriskbyaddress) | **GET** /risks/v1/flood/byaddress | Get Flood Risk By Address
@@ -1219,6 +1224,93 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetFireHistoryV2
+
+> FireHistoryV2 GetFireHistoryV2 (string postCode, string startDate = null, string endDate = null, string maxCandidates = null)
+
+Get Fire History
+
+Accepts postcode as input and Returns fire event details for a particular postcode.
+
+### Example
+
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using com.precisely.apis.Api;
+using com.precisely.apis.Client;
+using com.precisely.apis.Model;
+
+namespace Example
+{
+    public class GetFireHistoryV2Example
+    {
+        public static void Main()
+        {
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new RisksServiceApi(Configuration.Default);
+            var postCode = postCode_example;  // string | 5 digit Postal code to search
+            var startDate = startDate_example;  // string | Start time in milliseconds(UTC) (optional) 
+            var endDate = endDate_example;  // string | End time in milliseconds(UTC) (optional) 
+            var maxCandidates = maxCandidates_example;  // string | Maximum response events (optional) 
+
+            try
+            {
+                // Get Fire History
+                FireHistoryV2 result = apiInstance.GetFireHistoryV2(postCode, startDate, endDate, maxCandidates);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException e)
+            {
+                Debug.Print("Exception when calling RisksServiceApi.GetFireHistoryV2: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postCode** | **string**| 5 digit Postal code to search | 
+ **startDate** | **string**| Start time in milliseconds(UTC) | [optional] 
+ **endDate** | **string**| End time in milliseconds(UTC) | [optional] 
+ **maxCandidates** | **string**| Maximum response events | [optional] 
+
+### Return type
+
+[**FireHistoryV2**](FireHistoryV2.md)
+
+### Authorization
+
+[oAuth2Password](../README.md#oAuth2Password)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetFireRiskByAddress
 
 > FireRiskResponse GetFireRiskByAddress (string address, string includeGeometry = null)
@@ -1534,6 +1626,336 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: application/json, application/xml
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetFireRiskV2ByAddress
+
+> FireRiskV2Response GetFireRiskV2ByAddress (string address, string includeGeometry = null)
+
+Get Fire Risk By Address
+
+Accepts addresses as input and Returns fire risk data by risk types.
+
+### Example
+
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using com.precisely.apis.Api;
+using com.precisely.apis.Client;
+using com.precisely.apis.Model;
+
+namespace Example
+{
+    public class GetFireRiskV2ByAddressExample
+    {
+        public static void Main()
+        {
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new RisksServiceApi(Configuration.Default);
+            var address = address_example;  // string | Free form address text
+            var includeGeometry = includeGeometry_example;  // string | Flag to return Geometry default is N (optional) 
+
+            try
+            {
+                // Get Fire Risk By Address
+                FireRiskV2Response result = apiInstance.GetFireRiskV2ByAddress(address, includeGeometry);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException e)
+            {
+                Debug.Print("Exception when calling RisksServiceApi.GetFireRiskV2ByAddress: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **address** | **string**| Free form address text | 
+ **includeGeometry** | **string**| Flag to return Geometry default is N | [optional] 
+
+### Return type
+
+[**FireRiskV2Response**](FireRiskV2Response.md)
+
+### Authorization
+
+[oAuth2Password](../README.md#oAuth2Password)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetFireRiskV2ByAddressBatch
+
+> FireRiskV2ResponseList GetFireRiskV2ByAddressBatch (FireRiskByAddressRequest fireRiskByAddressRequest)
+
+Post Fire Risk By Address
+
+This is a Batch offering for 'Fire Risk By Address' service. It accepts a single address or a list of addresses and retrieve fire risk data by risk types.
+
+### Example
+
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using com.precisely.apis.Api;
+using com.precisely.apis.Client;
+using com.precisely.apis.Model;
+
+namespace Example
+{
+    public class GetFireRiskV2ByAddressBatchExample
+    {
+        public static void Main()
+        {
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new RisksServiceApi(Configuration.Default);
+            var fireRiskByAddressRequest = new FireRiskByAddressRequest(); // FireRiskByAddressRequest | 
+
+            try
+            {
+                // Post Fire Risk By Address
+                FireRiskV2ResponseList result = apiInstance.GetFireRiskV2ByAddressBatch(fireRiskByAddressRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException e)
+            {
+                Debug.Print("Exception when calling RisksServiceApi.GetFireRiskV2ByAddressBatch: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fireRiskByAddressRequest** | [**FireRiskByAddressRequest**](FireRiskByAddressRequest.md)|  | 
+
+### Return type
+
+[**FireRiskV2ResponseList**](FireRiskV2ResponseList.md)
+
+### Authorization
+
+[oAuth2Password](../README.md#oAuth2Password)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetFireRiskV2ByLocation
+
+> FireRiskV2Response GetFireRiskV2ByLocation (string longitude, string latitude, string includeGeometry = null)
+
+Get Fire Risk By Location
+
+Accepts latitude & longitude as input and Returns fire risk data by risk types.
+
+### Example
+
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using com.precisely.apis.Api;
+using com.precisely.apis.Client;
+using com.precisely.apis.Model;
+
+namespace Example
+{
+    public class GetFireRiskV2ByLocationExample
+    {
+        public static void Main()
+        {
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new RisksServiceApi(Configuration.Default);
+            var longitude = longitude_example;  // string | Longitude of Location
+            var latitude = latitude_example;  // string | Latitude of Location
+            var includeGeometry = includeGeometry_example;  // string | Flag to return Geometry default is N (optional) 
+
+            try
+            {
+                // Get Fire Risk By Location
+                FireRiskV2Response result = apiInstance.GetFireRiskV2ByLocation(longitude, latitude, includeGeometry);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException e)
+            {
+                Debug.Print("Exception when calling RisksServiceApi.GetFireRiskV2ByLocation: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **longitude** | **string**| Longitude of Location | 
+ **latitude** | **string**| Latitude of Location | 
+ **includeGeometry** | **string**| Flag to return Geometry default is N | [optional] 
+
+### Return type
+
+[**FireRiskV2Response**](FireRiskV2Response.md)
+
+### Authorization
+
+[oAuth2Password](../README.md#oAuth2Password)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OK |  -  |
+| **400** | Bad Request |  -  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetFireRiskV2ByLocationBatch
+
+> FireRiskV2ResponseList GetFireRiskV2ByLocationBatch (FireRiskByLocationRequest fireRiskByLocationRequest)
+
+Post Fire Risk By Location
+
+This is a Batch offering for 'Fire Risk By Location' service. It accepts a single location coordinate or a list of location coordinates and retrieve fire risk data by risk types.
+
+### Example
+
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using com.precisely.apis.Api;
+using com.precisely.apis.Client;
+using com.precisely.apis.Model;
+
+namespace Example
+{
+    public class GetFireRiskV2ByLocationBatchExample
+    {
+        public static void Main()
+        {
+            Configuration.Default.BasePath = "https://api.precisely.com";
+            // Configure OAuth2 access token for authorization: oAuth2Password
+            Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new RisksServiceApi(Configuration.Default);
+            var fireRiskByLocationRequest = new FireRiskByLocationRequest(); // FireRiskByLocationRequest | 
+
+            try
+            {
+                // Post Fire Risk By Location
+                FireRiskV2ResponseList result = apiInstance.GetFireRiskV2ByLocationBatch(fireRiskByLocationRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException e)
+            {
+                Debug.Print("Exception when calling RisksServiceApi.GetFireRiskV2ByLocationBatch: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fireRiskByLocationRequest** | [**FireRiskByLocationRequest**](FireRiskByLocationRequest.md)|  | 
+
+### Return type
+
+[**FireRiskV2ResponseList**](FireRiskV2ResponseList.md)
+
+### Authorization
+
+[oAuth2Password](../README.md#oAuth2Password)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
 ### HTTP response details
