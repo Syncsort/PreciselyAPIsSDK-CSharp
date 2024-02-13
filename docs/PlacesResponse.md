@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Candidates** | **string** |  | [optional] 
 **TotalMatchingCandidates** | **string** |  | [optional] 
 **Poi** | [**List&lt;Poi&gt;**](Poi.md) |  | [optional] 
-**MatchedAddress** | [**Address**](Address.md) |  | [optional] 
+**MatchedAddress** | [**Address1**](Address1.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to API list]](../README.md#documentation-for-api-endpoints)

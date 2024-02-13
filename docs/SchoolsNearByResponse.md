@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MatchedAddress** | [**Address**](Address.md) |  | [optional] 
+**MatchedAddress** | [**Address1**](Address1.md) |  | [optional] 
 **School** | [**List&lt;School&gt;**](School.md) |  | [optional] 
 **SchoolDistrict** | [**SchoolDistrict**](SchoolDistrict.md) |  | [optional] 
 

@@ -4,7 +4,7 @@ Precisely APIs
 
 Enhance & enrich your data, applications, business processes, and workflows with rich location, information, and identify APIs.
 
-The version of the OpenAPI document: 17.1.0
+The version of the OpenAPI document: 18.0.0
 
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -12,7 +12,7 @@ The version of the OpenAPI document: 17.1.0
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{72EA5648-5E03-4CBD-9A20-9874656C5BBC}</ProjectGuid>
+    <ProjectGuid>{D7E9E4B3-8DF2-450D-B22C-969BAE888AC2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>com.precisely.apis</RootNamespace>

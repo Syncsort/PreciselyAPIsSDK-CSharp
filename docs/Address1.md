@@ -35,8 +35,6 @@ Name | Type | Description | Notes
 **StreetName** | **string** |  | [optional] 
 **UnitType** | **string** |  | [optional] 
 **UnitValue** | **string** |  | [optional] 
-**PostalVerified** | **string** |  | [optional] 
-**CustomFields** | **Dictionary&lt;string, Object&gt;** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to API list]](../README.md#documentation-for-api-endpoints)

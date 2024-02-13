@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **AreaName1** | **string** |  | [optional] 
 **Geometry** | [**Geometry**](Geometry.md) |  | [optional] 
 **AreaCodeInfoList** | [**List&lt;AreaCodeInfo&gt;**](AreaCodeInfo.md) |  | [optional] 
-**MatchedAddress** | [**Address**](Address.md) |  | [optional] 
+**MatchedAddress** | [**Address1**](Address1.md) |  | [optional] 
 **Match** | [**Match**](Match.md) |  | [optional] 
 **County** | [**County**](County.md) |  | [optional] 
 **Count** | **int** |  | [optional] 

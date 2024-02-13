@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Intersection** | [**List&lt;Intersection&gt;**](Intersection.md) |  | [optional] 
-**MatchedAddress** | [**Address**](Address.md) |  | [optional] 
+**MatchedAddress** | [**Address1**](Address1.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to API list]](../README.md#documentation-for-api-endpoints)

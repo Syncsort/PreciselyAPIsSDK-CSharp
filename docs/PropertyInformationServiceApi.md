@@ -324,7 +324,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, application/xml
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -405,7 +405,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json, application/xml
+- **Accept**: application/json
 
 
 ### HTTP response details

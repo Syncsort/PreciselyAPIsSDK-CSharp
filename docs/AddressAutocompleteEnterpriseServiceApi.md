@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## ListLocations
 
-> TypeaheadLocations ListLocations (string searchText, string transactionId, string latitude = null, string longitude = null, string searchRadius = null, string searchRadiusUnit = null, string maxCandidates = null, string country = null, string matchOnAddressNumber = null, string autoDetectLocation = null, string ipAddress = null, string areaName1 = null, string areaName3 = null, string postCode = null, string returnAdminAreasOnly = null, string includeRangesDetails = null, string searchType = null, string searchOnAddressNumber = null, string searchOnUnitInfo = null)
+> TypeaheadLocations ListLocations (string searchText, string transactionId, string latitude = null, string longitude = null, string searchRadius = null, string searchRadiusUnit = null, string maxCandidates = null, string country = null, string matchOnAddressNumber = null, string autoDetectLocation = null, string ipAddress = null, string areaName1 = null, string areaName3 = null, string postCode = null, string returnAdminAreasOnly = null, string includeRangesDetails = null, string searchType = null, string searchOnAddressNumber = null, string searchOnUnitInfo = null, string searchOnPOBox = null)
 
 
 
@@ -54,10 +54,11 @@ namespace Example
             var searchType = searchType_example;  // string | Preference to control search type of interactive requests. (optional) 
             var searchOnAddressNumber = searchOnAddressNumber_example;  // string | Preference to search on address number. (optional) 
             var searchOnUnitInfo = searchOnUnitInfo_example;  // string | Preference to search on unit info. (optional) 
+            var searchOnPOBox = searchOnPOBox_example;  // string | Specifies whether to enable search for matching on PO Box. (optional) 
 
             try
             {
-                TypeaheadLocations result = apiInstance.ListLocations(searchText, transactionId, latitude, longitude, searchRadius, searchRadiusUnit, maxCandidates, country, matchOnAddressNumber, autoDetectLocation, ipAddress, areaName1, areaName3, postCode, returnAdminAreasOnly, includeRangesDetails, searchType, searchOnAddressNumber, searchOnUnitInfo);
+                TypeaheadLocations result = apiInstance.ListLocations(searchText, transactionId, latitude, longitude, searchRadius, searchRadiusUnit, maxCandidates, country, matchOnAddressNumber, autoDetectLocation, ipAddress, areaName1, areaName3, postCode, returnAdminAreasOnly, includeRangesDetails, searchType, searchOnAddressNumber, searchOnUnitInfo, searchOnPOBox);
                 Debug.WriteLine(result);
             }
             catch (ApiException e)
@@ -95,6 +96,7 @@ Name | Type | Description  | Notes
  **searchType** | **string**| Preference to control search type of interactive requests. | [optional] 
  **searchOnAddressNumber** | **string**| Preference to search on address number. | [optional] 
  **searchOnUnitInfo** | **string**| Preference to search on unit info. | [optional] 
+ **searchOnPOBox** | **string**| Specifies whether to enable search for matching on PO Box. | [optional] 
 
 ### Return type
 

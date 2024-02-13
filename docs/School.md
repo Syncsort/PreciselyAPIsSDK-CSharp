@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Phone** | **string** |  | [optional] 
 **Website** | **string** |  | [optional] 
 **AddressType** | **string** |  | [optional] 
-**Address** | [**Address**](Address.md) |  | [optional] 
+**Address** | [**Address1**](Address1.md) |  | [optional] 
 **LowestGrade** | **string** |  | [optional] 
 **HighestGrade** | **string** |  | [optional] 
 **SchoolType** | **string** |  | [optional] 

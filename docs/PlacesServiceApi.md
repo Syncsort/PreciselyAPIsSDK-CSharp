@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, application/xml, text/csv
+- **Accept**: application/json, text/csv
 
 
 ### HTTP response details
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, application/xml
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -186,7 +186,7 @@ Name | Type | Description  | Notes
 
 Get POIs By Address.
 
-This service accepts an address as input and returns nearby points-of-interest places around that address. Additional input features include retrieving data by name, type, standard industrial classifications and category codes, as well as geographic filtering by radius, travel times and travel distances. Response features include JSON/XML as well as CSV download.
+This service accepts an address as input and returns nearby points-of-interest places around that address. Additional input features include retrieving data by name, type, standard industrial classifications and category codes, as well as geographic filtering by radius, travel times and travel distances. Response features include JSON as well as CSV download.
 
 ### Example
 
@@ -281,7 +281,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, application/xml, text/csv
+- **Accept**: application/json, text/csv
 
 
 ### HTTP response details
@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
 
 GET Points Of Interest By Area.
 
-This service accepts city or postcode (alongwith country) and returns points-of-interest places within a city or postcode. Additional input features include retrieving data by name, type, standard industrial classifications and category codes, as well as geographic filtering by radius, travel times and travel distances. Response features include JSON/XML as well as CSV download.
+This service accepts city or postcode (alongwith country) and returns points-of-interest places within a city or postcode. Additional input features include retrieving data by name, type, standard industrial classifications and category codes, as well as geographic filtering by radius, travel times and travel distances. Response features include JSON as well as CSV download.
 
 ### Example
 
@@ -388,7 +388,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, application/xml, text/csv
+- **Accept**: application/json, text/csv
 
 
 ### HTTP response details
@@ -469,7 +469,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json, application/xml, text/csv
+- **Accept**: application/json, text/csv
 
 
 ### HTTP response details
@@ -491,7 +491,7 @@ Name | Type | Description  | Notes
 
 Get POIs By Location.
 
-This service accepts latitude/longitude as input and returns nearby points-of-interest places around that location. Additional input features include retrieving data by name, type, standard industrial classifications and category codes, as well as geographic filtering by radius, travel times and travel distances. Response features include JSON/XML as well as CSV download
+This service accepts latitude/longitude as input and returns nearby points-of-interest places around that location. Additional input features include retrieving data by name, type, standard industrial classifications and category codes, as well as geographic filtering by radius, travel times and travel distances. Response features include JSON as well as CSV download
 
 ### Example
 
@@ -586,7 +586,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, application/xml, text/csv
+- **Accept**: application/json, text/csv
 
 
 ### HTTP response details
@@ -668,8 +668,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/xml
-- **Accept**: application/json, application/xml
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -752,7 +752,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, application/xml, text/csv
+- **Accept**: application/json, text/csv
 
 
 ### HTTP response details
@@ -883,7 +883,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, application/xml
+- **Accept**: application/json
 
 
 ### HTTP response details

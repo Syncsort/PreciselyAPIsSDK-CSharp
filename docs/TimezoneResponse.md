@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **UtcOffset** | **long** |  | [optional] 
 **DstOffset** | **long** |  | [optional] 
 **Timestamp** | **long** |  | [optional] 
-**MatchedAddress** | [**Address**](Address.md) |  | [optional] 
+**MatchedAddress** | [**Address1**](Address1.md) |  | [optional] 
 **Country** | **string** |  | [optional] 
 **TzValidFrom** | **string** |  | [optional] 
 **TzValidUntill** | **string** |  | [optional] 

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | [**Address**](Address.md) |  | [optional] 
+**Address** | [**Address1**](Address1.md) |  | [optional] 
 **Phone** | **string** |  | [optional] 
 **Fax** | **string** |  | [optional] 
 **CountryAccessCode** | **string** |  | [optional] 
